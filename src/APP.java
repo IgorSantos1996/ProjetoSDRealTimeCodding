@@ -1,22 +1,23 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
-import java.util.logging.Logger;
+import java.text.DateFormat;
+import java.util.Date;
 
 
 public class APP implements ActionListener {
     private JLabel numeroContribuintes;
+    private JTextField campodata;
     private JMenuBar mnBarra;
     private JMenu mnSobre;
     private Image iconeTitulo;
     private ImageIcon background = new ImageIcon(getClass().getResource("programming-flag.png"));
     private JLabel fundo, auxiliar;
+    private javax.swing.Timer timer;
+
 
     private JMenuItem miAutores;
     //private JMenu mnExportar;
@@ -30,6 +31,7 @@ public class APP implements ActionListener {
         mnBarra = new JMenuBar();
         //miSair = new JMenu("Sair");
         numeroContribuintes = new JLabel();
+        campodata = new JTextField();
         mnSobre = new JMenu("Sobre");
         //mnExportar  = new JMenu("Exportar Classe java");
         botaoIniciar = new JButton("Iniciar");
@@ -48,6 +50,7 @@ public class APP implements ActionListener {
         fundo.setLayout(null);
         auxiliar = new JLabel(background);
         jFramePrincipal.setContentPane(auxiliar);
+
 
         mnBarra.add(mnSobre);
         //mnBarra.add(mnExportar);
@@ -72,14 +75,23 @@ public class APP implements ActionListener {
         jFramePrincipal.pack();
         jFramePrincipal.setLocationRelativeTo(null);
         jFramePrincipal.setResizable(false);
-
-
+        //HORA E DATA
+        Date data = new Date();
+        DateFormat sdf = DateFormat.getDateInstance(DateFormat.DEFAULT);
+        //System.out.println(formatador.format(data));
+        campodata.setText(sdf.format(data));
+        campodata.setBounds(730, 10, 100, 50);
+        campodata.setBorder(new LineBorder(Color.WHITE, 0,false));
+        campodata.setFont(new Font("arial", Font.BOLD, 16));
+        jFramePrincipal.add(campodata);
+        campodata.setEnabled(false);
 
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
 
         if (e.getSource().equals(botaoIniciar)) {
 
@@ -94,7 +106,7 @@ public class APP implements ActionListener {
         try {
 
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
