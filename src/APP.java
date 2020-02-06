@@ -3,30 +3,28 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.Random;
+import java.util.Timer;
 
 
 public class APP implements ActionListener {
-    private JLabel contribuintes;
+    private JLabel contribuintes, numemroAcesso, mensagemPorta;
     private JTextField campodata, numeroContribuintes;
     private JMenuBar mnBarra;
     private JMenu mnSobre;
     private Image iconeTitulo;
     private ImageIcon background = new ImageIcon(getClass().getResource("programming-flag.png"));
     private JLabel fundo, auxiliar;
-    private javax.swing.Timer timer;
-
-
     private JMenuItem miAutores;
-    //private JMenu mnExportar;
-    //private JMenu miSair;
     private JFrame jFramePrincipal;
     private JButton botaoIniciar, feito;
-
+    Random random = new Random();
+    Integer numberAcesso = random.nextInt(10000);
+    private Timer timer;
+    private int delay = 2000;
 
     public APP() {
         jFramePrincipal = new JFrame("Real time codding");
@@ -40,6 +38,8 @@ public class APP implements ActionListener {
         //mnExportar  = new JMenu("Exportar Classe java");
         botaoIniciar = new JButton("Iniciar");
         miAutores = new JMenuItem("Info autores");
+        numemroAcesso = new JLabel();
+        mensagemPorta = new JLabel("Porta de acesso");
 
         inicializarComponentes();
 
@@ -54,11 +54,7 @@ public class APP implements ActionListener {
         fundo.setLayout(null);
         auxiliar = new JLabel(background);
         jFramePrincipal.setContentPane(auxiliar);
-
-
         mnBarra.add(mnSobre);
-        //mnBarra.add(mnExportar);
-        //miSair.addActionListener(this);
         botaoIniciar.addActionListener(this);
         mnSobre.add(miAutores);
         miAutores.addActionListener(this);
@@ -67,6 +63,11 @@ public class APP implements ActionListener {
         jFramePrincipal.add(numeroContribuintes);
         jFramePrincipal.add(contribuintes);
         jFramePrincipal.add(feito);
+        jFramePrincipal.add(numemroAcesso);
+        jFramePrincipal.add(mensagemPorta);
+
+        /*Gerando numero de acesso*/
+        numemroAcesso.setText(numberAcesso.toString());
 
         jFramePrincipal.add(botaoIniciar);
         URL path = this.getClass().getResource("programming-flag.png");
@@ -100,9 +101,13 @@ public class APP implements ActionListener {
         contribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
         numeroContribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
         jFramePrincipal.getRootPane().setDefaultButton(botaoIniciar);
+        numemroAcesso.setBounds(150, 5, 70, 40);
+        numemroAcesso.setFont(new Font("arial", Font.ITALIC, 14));
+        numemroAcesso.setBorder(new LineBorder(Color.BLUE, 5, true));
+        mensagemPorta.setBounds(20, 3, 140, 50);
+        mensagemPorta.setFont(new Font("arial", Font.ITALIC, 14));
 
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -136,10 +141,9 @@ public class APP implements ActionListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         APP principal = new APP();
         principal.jFramePrincipal.setVisible(true);
 
     }
-
-
 }
