@@ -10,47 +10,47 @@ import java.util.Random;
 import java.util.Timer;
 
 
-public class APP implements ActionListener {
-    private JLabel contribuintes, numemroAcesso, mensagemPorta;
+public class APP extends JLabel implements ActionListener {
+
+    private JLabel     contribuintes, mensagemPorta;
     private JTextField campodata, numeroContribuintes;
-    private JMenuBar mnBarra;
-    private JMenu mnSobre;
-    private Image iconeTitulo;
-    private ImageIcon background = new ImageIcon(getClass().getResource("programming-flag.png"));
-    private JLabel fundo, auxiliar;
-    private JMenuItem miAutores;
-    private JFrame jFramePrincipal;
-    private JButton botaoIniciar, feito;
-    Random random = new Random();
-    Integer numberAcesso = random.nextInt(10000);
-    private Timer timer;
-    private int delay = 2000;
+    private JMenuBar   mnBarra;
+    private JMenu      mnSobre;
+    private Image      iconeTitulo;
+    private ImageIcon  background = new ImageIcon(getClass().getResource("programming-flag.png"));
+    private JLabel     fundo, auxiliar;
+    private JMenuItem  miAutores;
+    private JFrame     jFramePrincipal;
+    private JButton    botaoIniciar, feito;
+    Random             random       = new Random();
+    Integer            numberAcesso = random.nextInt(10000);
+    private Timer      timer;
+    private int        delay        = 2000;
+    BlinkLabel bl;
 
     public APP() {
         jFramePrincipal = new JFrame("Real time codding");
-        mnBarra = new JMenuBar();
+        mnBarra         = new JMenuBar();
         //miSair = new JMenu("Sair");
-        contribuintes = new JLabel("Quantidade de participantes");
+        contribuintes       = new JLabel("Quantidade de participantes");
         numeroContribuintes = new JTextField();
         campodata = new JTextField();
-        mnSobre = new JMenu("Sobre");
-        feito = new JButton("Feito");
+        mnSobre   = new JMenu("Sobre");
+        feito     = new JButton("Feito");
         //mnExportar  = new JMenu("Exportar Classe java");
-        botaoIniciar = new JButton("Iniciar");
-        miAutores = new JMenuItem("Info autores");
-        numemroAcesso = new JLabel();
+        botaoIniciar  = new JButton("Iniciar");
+        miAutores     = new JMenuItem("Info autores");
         mensagemPorta = new JLabel("Porta de acesso");
-
         inicializarComponentes();
 
     }
 
     public void inicializarComponentes() {
 
-        Image img = background.getImage();
+        Image img  = background.getImage();
         Image temp = img.getScaledInstance(900, 650, Image.SCALE_SMOOTH);
         background = new ImageIcon(temp);
-        fundo = new JLabel(background);
+        fundo      = new JLabel(background);
         fundo.setLayout(null);
         auxiliar = new JLabel(background);
         jFramePrincipal.setContentPane(auxiliar);
@@ -63,19 +63,22 @@ public class APP implements ActionListener {
         jFramePrincipal.add(numeroContribuintes);
         jFramePrincipal.add(contribuintes);
         jFramePrincipal.add(feito);
-        jFramePrincipal.add(numemroAcesso);
         jFramePrincipal.add(mensagemPorta);
 
         /*Gerando numero de acesso*/
-        numemroAcesso.setText(numberAcesso.toString());
+
+        bl = new BlinkLabel(numberAcesso.toString());
+        System.out.println("TesteOK: "+numberAcesso.toString());
+
+        jFramePrincipal.add(bl);
 
         jFramePrincipal.add(botaoIniciar);
-        URL path = this.getClass().getResource("programming-flag.png");
+        URL path          = this.getClass().getResource("programming-flag.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(path);
 
         jFramePrincipal.setIconImage(iconeTitulo);
 
-        botaoIniciar.setBounds(380, 520, 150, 30);
+        botaoIniciar.setBounds(380, 520, 100, 30);
 
         botaoIniciar.setEnabled(false);
         numeroContribuintes.setBounds(380, 470, 150, 30);
@@ -88,11 +91,11 @@ public class APP implements ActionListener {
         jFramePrincipal.setLocationRelativeTo(null);
         jFramePrincipal.setResizable(false);
         //HORA E DATA
-        Date data = new Date();
+        Date data      = new Date();
         DateFormat sdf = DateFormat.getDateInstance(DateFormat.DEFAULT);
         //System.out.println(formatador.format(data));
         campodata.setText(sdf.format(data));
-        campodata.setBounds(730, 10, 100, 50);
+        campodata.setBounds(730, 10, 150, 50);
         campodata.setBorder(new LineBorder(Color.WHITE, 0, false));
         campodata.setFont(new Font("arial", Font.BOLD, 16));
         jFramePrincipal.add(campodata);
@@ -101,9 +104,9 @@ public class APP implements ActionListener {
         contribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
         numeroContribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
         jFramePrincipal.getRootPane().setDefaultButton(botaoIniciar);
-        numemroAcesso.setBounds(150, 5, 70, 40);
-        numemroAcesso.setFont(new Font("arial", Font.ITALIC, 14));
-        numemroAcesso.setBorder(new LineBorder(Color.BLUE, 5, true));
+        bl.setBounds(150, 5, 70, 40);
+        bl.setFont(new Font("arial", Font.ITALIC, 14));
+        bl.setBorder(new LineBorder(Color.BLUE, 5, true));
         mensagemPorta.setBounds(20, 3, 140, 50);
         mensagemPorta.setFont(new Font("arial", Font.ITALIC, 14));
 
@@ -111,7 +114,6 @@ public class APP implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
 
         if ((!numeroContribuintes.getText().trim().isEmpty()) && (e.getSource().equals(feito))) {
             System.out.println(numeroContribuintes.getText());
@@ -128,7 +130,6 @@ public class APP implements ActionListener {
 
     }
 
-
     public static void main(String[] args) {
         try {
 
@@ -142,8 +143,11 @@ public class APP implements ActionListener {
             e.printStackTrace();
         }
 
-        APP principal = new APP();
-        principal.jFramePrincipal.setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new APP().jFramePrincipal.show();
+            }
+        });
 
     }
 }

@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="adc586ae-f1a9-4a08-aa9b-07ece8383d48" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/BlinkLabel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjetoSD/APP.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjetoSD/APP.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/APP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/APP.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,6 +30,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
@@ -64,6 +68,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1580899749172</updated>
+      <workItem from="1581023067155" duration="625000" />
+      <workItem from="1581071065741" duration="2333000" />
+      <workItem from="1581097231844" duration="895000" />
+      <workItem from="1581099596119" duration="2366000" />
+      <workItem from="1581102164727" duration="3049000" />
+      <workItem from="1581294776132" duration="879000" />
     </task>
     <servers />
   </component>
@@ -76,29 +86,29 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="115" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1580907664262" />
-    <state width="1323" height="77" key="GridCell.Tab.0.bottom" timestamp="1581015719596">
+    <state width="1323" height="116" key="GridCell.Tab.0.bottom" timestamp="1581295665839">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="77" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1581015719596" />
-    <state width="1323" height="77" key="GridCell.Tab.0.center" timestamp="1581015719596">
+    <state width="1323" height="116" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1581295665839" />
+    <state width="1323" height="116" key="GridCell.Tab.0.center" timestamp="1581295665839">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="77" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1581015719596" />
-    <state width="1323" height="77" key="GridCell.Tab.0.left" timestamp="1581015719596">
+    <state width="1323" height="116" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1581295665839" />
+    <state width="1323" height="116" key="GridCell.Tab.0.left" timestamp="1581295665839">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="77" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1581015719596" />
-    <state width="1323" height="77" key="GridCell.Tab.0.right" timestamp="1581015719596">
+    <state width="1323" height="116" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1581295665839" />
+    <state width="1323" height="116" key="GridCell.Tab.0.right" timestamp="1581295665839">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="77" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1581015719596" />
+    <state width="1323" height="116" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1581295665839" />
     <state x="186" y="10" key="SettingsEditor" timestamp="1581012785658">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="186" y="10" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1581012785658" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1581009994160">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1581295427587">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1581009994160" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1581295427587" />
   </component>
 </project>
