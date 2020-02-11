@@ -15,7 +15,7 @@ public class APP extends JLabel implements ActionListener {
     private JLabel     contribuintes, mensagemPorta;
     private JTextField campodata, numeroContribuintes;
     private JMenuBar   mnBarra;
-    private JMenu      mnSobre, mnParticipar;
+    private JMenu      mnParticipar;
     private Image      iconeTitulo;
     private ImageIcon  background = new ImageIcon(getClass().getResource("programming-flag.png"));
     private JLabel     fundo, auxiliar;
@@ -35,7 +35,7 @@ public class APP extends JLabel implements ActionListener {
         contribuintes = new JLabel("Quantidade de participantes");
         numeroContribuintes = new JTextField();
         campodata = new JTextField();
-        mnSobre = new JMenu("Sobre");
+
         mnParticipar = new JMenu("Participar");
         feito = new JButton("Feito");
         //mnExportar  = new JMenu("Exportar Classe java");
@@ -56,9 +56,9 @@ public class APP extends JLabel implements ActionListener {
         fundo.setLayout(null);
         auxiliar = new JLabel(background);
         jFramePrincipal.setContentPane(auxiliar);
-        mnBarra.add(mnSobre);
+
         botaoIniciar.addActionListener(this);
-        mnSobre.add(miAutores);
+
         mnParticipar.add(miColaborar);
         mnBarra.add(mnParticipar);
 
@@ -105,7 +105,7 @@ public class APP extends JLabel implements ActionListener {
         campodata.setFont(new Font("arial", Font.BOLD, 16));
         jFramePrincipal.add(campodata);
         campodata.setEnabled(false);
-
+        miColaborar.setEnabled(false);
         contribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
         numeroContribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
         jFramePrincipal.getRootPane().setDefaultButton(botaoIniciar);
@@ -129,12 +129,14 @@ public class APP extends JLabel implements ActionListener {
         }
 
         if (e.getSource().equals(botaoIniciar)) {
+            miColaborar.setEnabled(true);
             for (int i = 0; i < size; i++) {
                 new Escritorio().jFrame.show();
             }
         } else if (e.getSource().equals(miAutores)) {
             JOptionPane.showMessageDialog(null, "Ainda não implementado");
         } else if (e.getSource().equals(miColaborar)) {
+
             new Escritorio().jFrame.setVisible(true);
         }
 
