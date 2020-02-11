@@ -12,21 +12,21 @@ import java.util.Timer;
 
 public class APP extends JLabel implements ActionListener {
 
-    private JLabel contribuintes, mensagemPorta;
+    private JLabel     contribuintes, mensagemPorta;
     private JTextField campodata, numeroContribuintes;
-    private JMenuBar mnBarra;
-    private JMenu mnSobre, mnParticipar;
-    private Image iconeTitulo;
-    private ImageIcon background = new ImageIcon(getClass().getResource("programming-flag.png"));
-    private JLabel fundo, auxiliar;
-    private JMenuItem miAutores, miColaborar;
-    private JFrame jFramePrincipal;
-    private JButton botaoIniciar, feito;
-    Random random = new Random();
-    Integer numberAcesso = random.nextInt(10000);
-    private Timer timer;
-    private int delay = 2000;
-    BlinkLabel bl;
+    private JMenuBar   mnBarra;
+    private JMenu      mnSobre, mnParticipar;
+    private Image      iconeTitulo;
+    private ImageIcon  background = new ImageIcon(getClass().getResource("programming-flag.png"));
+    private JLabel     fundo, auxiliar;
+    private JMenuItem  miAutores, miColaborar;
+    private JFrame     jFramePrincipal;
+    private JButton    botaoIniciar, feito;
+    Random             random = new Random();
+    Integer            numberAcesso = random.nextInt(10000);
+    private Timer      timer;
+    private int        delay = 2000;
+    BlinkLabel         bl;
 
     public APP() {
         jFramePrincipal = new JFrame("Real time codding");
@@ -74,7 +74,6 @@ public class APP extends JLabel implements ActionListener {
         /*Gerando numero de acesso*/
 
         bl = new BlinkLabel(numberAcesso.toString());
-        //System.out.println("TesteOK: "+numberAcesso.toString());
 
         jFramePrincipal.add(bl);
 
@@ -99,14 +98,14 @@ public class APP extends JLabel implements ActionListener {
         //HORA E DATA
         Date data = new Date();
         DateFormat sdf = DateFormat.getDateInstance(DateFormat.DEFAULT);
-        //System.out.println(formatador.format(data));
+
         campodata.setText(sdf.format(data));
         campodata.setBounds(730, 10, 150, 50);
         campodata.setBorder(new LineBorder(Color.WHITE, 0, false));
         campodata.setFont(new Font("arial", Font.BOLD, 16));
         jFramePrincipal.add(campodata);
         campodata.setEnabled(false);
-        //feito.setEnabled(false);
+
         contribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
         numeroContribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
         jFramePrincipal.getRootPane().setDefaultButton(botaoIniciar);
@@ -121,22 +120,24 @@ public class APP extends JLabel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        int size = Integer.parseInt(numeroContribuintes.getText());
+
         if ((!numeroContribuintes.getText().trim().isEmpty()) && (e.getSource().equals(feito))) {
-            System.out.println(numeroContribuintes.getText());
             botaoIniciar.setEnabled(true);
             feito.setEnabled(false);
             numeroContribuintes.setEditable(false);
-
         }
 
         if (e.getSource().equals(botaoIniciar)) {
-
-
+            for (int i = 0; i < size; i++) {
+                new Escritorio().jFrame.show();
+            }
         } else if (e.getSource().equals(miAutores)) {
             JOptionPane.showMessageDialog(null, "Ainda não implementado");
         } else if (e.getSource().equals(miColaborar)) {
-            JOptionPane.showMessageDialog(null, "Ainda não implementado");
+            new Escritorio().jFrame.setVisible(true);
         }
+
     }
 
     public static void main(String[] args) {
@@ -152,11 +153,7 @@ public class APP extends JLabel implements ActionListener {
             e.printStackTrace();
         }
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new APP().jFramePrincipal.show();
-            }
-        });
+        new APP().jFramePrincipal.show();
 
     }
 }
