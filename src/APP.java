@@ -21,7 +21,7 @@ public class APP extends JLabel implements ActionListener {
     private JLabel     fundo, auxiliar;
     private JMenuItem  miAutores, miColaborar;
     private JFrame     jFramePrincipal;
-    private JButton    botaoIniciar, feito;
+    private JButton    botaoIniciar, feito, btnComentario;
     Random             random = new Random();
     Integer            numberAcesso = random.nextInt(10000);
     private Timer      timer;
@@ -43,6 +43,7 @@ public class APP extends JLabel implements ActionListener {
         miAutores = new JMenuItem("Info autores");
         mensagemPorta = new JLabel("Porta de acesso");
         miColaborar = new JMenuItem("Colaborar");
+        btnComentario = new JButton("Comentário");
         inicializarComponentes();
 
     }
@@ -58,6 +59,7 @@ public class APP extends JLabel implements ActionListener {
         jFramePrincipal.setContentPane(auxiliar);
 
         botaoIniciar.addActionListener(this);
+        btnComentario.addActionListener(this);
 
         mnParticipar.add(miColaborar);
         mnBarra.add(mnParticipar);
@@ -69,6 +71,7 @@ public class APP extends JLabel implements ActionListener {
         jFramePrincipal.add(numeroContribuintes);
         jFramePrincipal.add(contribuintes);
         jFramePrincipal.add(feito);
+        jFramePrincipal.add(btnComentario);
         jFramePrincipal.add(mensagemPorta);
 
         /*Gerando numero de acesso*/
@@ -85,7 +88,11 @@ public class APP extends JLabel implements ActionListener {
 
         botaoIniciar.setBounds(380, 520, 100, 30);
 
+        btnComentario.setBounds(540, 520, 100, 30);
+
         botaoIniciar.setEnabled(false);
+        btnComentario.setEnabled(false);
+
         numeroContribuintes.setBounds(380, 470, 150, 30);
         contribuintes.setBounds(180, 470, 200, 30);
         feito.setBounds(540, 470, 100, 30);
@@ -124,6 +131,7 @@ public class APP extends JLabel implements ActionListener {
 
         if ((!numeroContribuintes.getText().trim().isEmpty()) && (e.getSource().equals(feito))) {
             botaoIniciar.setEnabled(true);
+            btnComentario.setEnabled(true);
             feito.setEnabled(false);
             numeroContribuintes.setEditable(false);
         }
@@ -139,8 +147,9 @@ public class APP extends JLabel implements ActionListener {
         } else if (e.getSource().equals(miAutores)) {
             JOptionPane.showMessageDialog(null, "Ainda não implementado");
         } else if (e.getSource().equals(miColaborar)) {
-
             new Escritorio().jFrame.setVisible(true);
+        } else if (e.getSource().equals(btnComentario)) {
+            new Comentario().JComentario.show();
         }
 
     }
