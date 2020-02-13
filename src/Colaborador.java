@@ -59,7 +59,7 @@ public class Colaborador extends JFrame implements ActionListener {
         okColaborador.addActionListener(this);
 
 
-        jFrameColaborador.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        jFrameColaborador.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         jFrameColaborador.getContentPane().setLayout(null);
         jFrameColaborador.setPreferredSize(new java.awt.Dimension(300, 300));
         jFrameColaborador.pack();
@@ -72,6 +72,7 @@ public class Colaborador extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(okColaborador)) {
             System.out.println(jTextField.getText());
+            jFrameColaborador.dispose();
         }
     }
 }

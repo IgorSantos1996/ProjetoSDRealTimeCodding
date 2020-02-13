@@ -3,8 +3,9 @@ import javax.swing.*;
 public class Escritorio {
 
     private JScrollPane jScrollPane1;
-    private JTextArea   jTextArea1;
-    public  JFrame      jFrame;
+    private JTextArea jTextArea1;
+    public JFrame jFrame;
+    public JLabel jlabelnome;
 
     LinhasNoJTextArea numeroLinhas;
 
@@ -18,8 +19,9 @@ public class Escritorio {
     public void initComponents() {
 
         jScrollPane1 = new JScrollPane();
-        jTextArea1   = new JTextArea();
-        jFrame       = new JFrame();
+        jTextArea1 = new JTextArea();
+        jFrame = new JFrame();
+        jlabelnome = new JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
