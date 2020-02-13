@@ -12,7 +12,7 @@ public class LinhasNoJTextArea extends JPanel
     public final static float LEFT = 0.0f;
     public final static float CENTER = 0.5f;
     public final static float RIGHT = 1.0f;
-    private Color color1 = new Color(7,86,100);
+    private Color color1 = new Color(255, 0, 0);
     private final static Border OUTER = new MatteBorder(0, 0, 0, 2,Color.BLACK);
 
     private final static int HEIGHT = Integer.MAX_VALUE - 1000000;

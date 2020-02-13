@@ -130,6 +130,9 @@ public class APP extends JLabel implements ActionListener {
 
         if (e.getSource().equals(botaoIniciar)) {
             miColaborar.setEnabled(true);
+
+            new Colaborador().jFrameColaborador.show();
+            System.out.println();
             for (int i = 0; i < size; i++) {
                 new Escritorio().jFrame.show();
             }
