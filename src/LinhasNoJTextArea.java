@@ -112,7 +112,6 @@ public class LinhasNoJTextArea extends JPanel
             int width = fontMetrics.charWidth('0') * digits;
             Insets insets = getInsets();
             int preferredWidth = insets.left + insets.right + width;
-
             Dimension d = getPreferredSize();
             d.setSize(preferredWidth, HEIGHT);
             setPreferredSize(d);
@@ -127,7 +126,6 @@ public class LinhasNoJTextArea extends JPanel
         FontMetrics fontMetrics = component.getFontMetrics(component.getFont());
         Insets insets = getInsets();
         int availableWidth = getSize().width - insets.left - insets.right;
-
         Rectangle clip = g.getClipBounds();
         int rowStartOffset = component.viewToModel(new Point(0, clip.y));
         int endOffset = component.viewToModel(new Point(0, clip.y + clip.height));
@@ -154,8 +152,8 @@ public class LinhasNoJTextArea extends JPanel
 
     private boolean isCurrentLine(int rowStartOffset) {
         int caretPosition = component.getCaretPosition();
-        Element root = component.getDocument().getDefaultRootElement();
 
+        Element root = component.getDocument().getDefaultRootElement();
         if (root.getElementIndex(rowStartOffset) == root.getElementIndex(caretPosition)) {
             return true;
         } else {
@@ -225,6 +223,7 @@ public class LinhasNoJTextArea extends JPanel
                 }
 
                 descent = Math.max(descent, fm.getDescent());
+
             }
         }
 
@@ -234,18 +233,25 @@ public class LinhasNoJTextArea extends JPanel
     //
 //  Implement CaretListener interface
 //
+    int flag = 0;
     @Override
     public void caretUpdate(CaretEvent e) {
         //  Get the line the caret is positioned on
 
         int caretPosition = component.getCaretPosition();
+        //System.out.println("OK3: "+caretPosition);
         Element root = component.getDocument().getDefaultRootElement();
         int currentLine = root.getElementIndex(caretPosition);
 
         //  Need to repaint so the correct line number can be highlighted
+
         if (lastLine != currentLine) {
             repaint();
             lastLine = currentLine;
+            //System.out.println("OK1: "+(lastLine + 1));
+        }if (flag <= lastLine) {
+            //System.out.println("OK2: " + (lastLine + 1));
+            flag++;
         }
     }
 
@@ -280,6 +286,8 @@ public class LinhasNoJTextArea extends JPanel
             public void run() {
                 try {
                     int endPos = component.getDocument().getLength();
+                    //System.out.println("Digitando...");
+
                     Rectangle rect = component.modelToView(endPos);
 
                     if (rect != null && rect.y != lastHeight) {
