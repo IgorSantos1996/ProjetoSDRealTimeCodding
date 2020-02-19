@@ -12,7 +12,7 @@ public class Comentario implements ActionListener {
     public JButton     btnEnviar;
 
     public Comentario() {
-        JComentario = new JFrame("Comentário");
+        JComentario = new JFrame("Chat");
         JTextArea1  = new JTextArea(15, 50);
         JTextArea2  = new JTextArea(15,50);
         JBarraDeRolagem1 = new JScrollPane(JTextArea1);
@@ -29,12 +29,12 @@ public class Comentario implements ActionListener {
         JComentario.getContentPane().add(JBarraDeRolagem1);
         JComentario.getContentPane().add(JBarraDeRolagem2);
 
-        btnEnviar.setBounds(390,575,100,30);
-        JBarraDeRolagem1.setBounds(15,15, 850, 276);
-        JBarraDeRolagem2.setBounds(15,290, 850, 280);
+        btnEnviar.setBounds(270,569,100,30);
+        JBarraDeRolagem1.setBounds(15,15, 600, 400);
+        JBarraDeRolagem2.setBounds(15,450, 600, 100);
 
         JComentario.getContentPane().setLayout(null);
-        JComentario.setPreferredSize(new Dimension(900, 650));
+        JComentario.setPreferredSize(new Dimension(640, 650));
 
         JComentario.pack();
         JComentario.setLocationRelativeTo(null);
