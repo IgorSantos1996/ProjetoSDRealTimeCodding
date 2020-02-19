@@ -7,36 +7,31 @@ import java.awt.event.ActionListener;
 public class Comentario implements ActionListener {
 
     public JFrame      JComentario;
-    public JPanel      JPainel;
     public JTextArea   JTextArea1, JTextArea2;
-    public JScrollPane JBarraDeRolagem;
+    public JScrollPane JBarraDeRolagem1, JBarraDeRolagem2;
     public JButton     btnEnviar;
 
     public Comentario() {
         JComentario = new JFrame("Comentário");
         JTextArea1  = new JTextArea(15, 50);
-        JBarraDeRolagem = new JScrollPane(JTextArea1);
-      //  btnEnviar   = new JButton("Enviar");
-        //JTextArea2  = new JTextArea(15,50);
-        //JPainel     = new JPanel();
+        JTextArea2  = new JTextArea(15,50);
+        JBarraDeRolagem1 = new JScrollPane(JTextArea1);
+        JBarraDeRolagem2 = new JScrollPane(JTextArea2);
+        btnEnviar   = new JButton("Enviar");
         inicializarComponentes();
     }
 
     public void inicializarComponentes() {
 
-        //btnEnviar.addActionListener(this);
+        btnEnviar.addActionListener(this);
 
-//        JBarraDeRolagem.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-  //      JBarraDeRolagem.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        //JBarraDeRolagem.add(JTextArea1);
-        //JComentario.add(btnEnviar);
-        JComentario.getContentPane().add(JBarraDeRolagem);
-        //JComentario.add(JTextArea1);
+        JComentario.add(btnEnviar);
+        JComentario.getContentPane().add(JBarraDeRolagem1);
+        JComentario.getContentPane().add(JBarraDeRolagem2);
 
-
-
-    //    btnEnviar.setBounds(50,50,100,100);
-        JTextArea1.setBounds(15,15, 850, 300);
+        btnEnviar.setBounds(390,575,100,30);
+        JBarraDeRolagem1.setBounds(15,15, 850, 276);
+        JBarraDeRolagem2.setBounds(15,290, 850, 280);
 
         JComentario.getContentPane().setLayout(null);
         JComentario.setPreferredSize(new Dimension(900, 650));
