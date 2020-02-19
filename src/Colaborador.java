@@ -80,7 +80,7 @@ public class Colaborador extends JFrame implements ActionListener {
 
             String getTitle = jTextField.getText();
             new Escritorio(getTitle).jFrame.show();
-            new Comentario().JComentario.show();
+            new Comentario(getTitle).JComentario.show();
             jFrameColaborador.dispose();
 
         }
