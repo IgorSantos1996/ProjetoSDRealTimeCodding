@@ -6,13 +6,14 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class Colaborador extends JFrame implements ActionListener {
-    private Integer id;
-    private String colaborador;
-    public JFrame jFrameColaborador;
-    private JLabel nomeColaborador;
-    private JButton okColaborador;
-    public JTextField jTextField, jTextFieldSize;
-    private int size;
+
+    private Integer    id;
+    private String     colaborador;
+    public  JFrame     jFrameColaborador;
+    private JLabel     nomeColaborador;
+    private JButton    okColaborador;
+    public  JTextField jTextField;
+    private int        size;
 
     public Colaborador(){}
 
@@ -38,6 +39,7 @@ public class Colaborador extends JFrame implements ActionListener {
     }
 
     public Colaborador(int size) {
+
         jFrameColaborador = new JFrame("Credenciais Colaborador");
         //jFrameColaborador.setBounds(100, 100, 100, 100);
         URL path = this.getClass().getResource("programming-flag.png");
@@ -52,6 +54,7 @@ public class Colaborador extends JFrame implements ActionListener {
     }
 
     public void inicializar_componentes() {
+
         jFrameColaborador.add(okColaborador);
         jFrameColaborador.add(jTextField);
         jFrameColaborador.add(nomeColaborador);
@@ -62,28 +65,28 @@ public class Colaborador extends JFrame implements ActionListener {
         jTextField.setBounds(80, 80, 170, 40);
         okColaborador.addActionListener(this);
 
-
         jFrameColaborador.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         jFrameColaborador.getContentPane().setLayout(null);
         jFrameColaborador.setPreferredSize(new java.awt.Dimension(300, 300));
         jFrameColaborador.pack();
         jFrameColaborador.setLocationRelativeTo(null);
         jFrameColaborador.setResizable(false);
-    }
 
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource().equals(okColaborador)) {
 
-            System.out.println(jTextField.getText());
+            System.out.println(this.size);
             String getTitle = jTextField.getText();
 
             for(int i = 0; i < this.size; i++) {
+                //jFrameColaborador.dispose();
                 if(i == 0) {
                     new Escritorio(getTitle).jFrame.show();
-                }else
+                } else
                     new Escritorio("NOME DE OUTRO COLABORADOR").jFrame.show();
             }
 

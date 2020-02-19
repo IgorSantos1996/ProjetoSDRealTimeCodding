@@ -14,6 +14,7 @@ public class LinhasNoJTextArea extends JPanel
     public final static float RIGHT = 1.0f;
     private Color color1 = new Color(255, 0, 0);
     private final static Border OUTER = new MatteBorder(0, 0, 0, 2,Color.BLACK);
+    public String digitando;
 
     private final static int HEIGHT = Integer.MAX_VALUE - 1000000;
 
@@ -25,13 +26,11 @@ public class LinhasNoJTextArea extends JPanel
     private float digitAlignment;
     private int minimumDisplayDigits;
 
-
     private int lastDigits;
     private int lastHeight;
     private int lastLine;
 
     private HashMap<String, FontMetrics> fonts;
-
 
     public LinhasNoJTextArea(JTextComponent component) {
         this(component, 3);
@@ -286,7 +285,8 @@ public class LinhasNoJTextArea extends JPanel
             public void run() {
                 try {
                     int endPos = component.getDocument().getLength();
-                    //System.out.println("Digitando...");
+
+                    System.out.println("Digitando...");
 
                     Rectangle rect = component.modelToView(endPos);
 

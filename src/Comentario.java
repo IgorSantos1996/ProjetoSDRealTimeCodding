@@ -15,8 +15,6 @@ public class Comentario implements ActionListener {
     public Comentario() {
         JComentario = new JFrame("Comentário");
         JTextArea = new JTextArea(15, 50);
-        JBarraDeRolagem = new JScrollPane(JTextArea);
-        btnEnviar = new JButton("Enviar");
         JPainel = new JPanel();
         inicializarComponentes();
     }
