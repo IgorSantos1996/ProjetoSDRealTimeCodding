@@ -50,7 +50,7 @@ public class Comentario implements ActionListener {
 
             JTextArea1.setForeground(Color.ORANGE);
             JTextArea1.setFont(new java.awt.Font("Arial", 2, 20));
-
+            
             JTextArea1.insert("@" + nomeColaborador + ": " + JTextArea2.getText(), JTextArea1.getCaretPosition());
 
             JTextArea1.append("\n");

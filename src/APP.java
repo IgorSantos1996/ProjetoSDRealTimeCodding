@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.InetAddress;
+import java.net.ServerSocket;
 import java.net.URL;
 import java.text.DateFormat;
 import java.util.Date;
@@ -15,10 +16,10 @@ import java.util.Timer;
 public class APP extends JLabel implements ActionListener {
 
     private JLabel mensagemPorta, mensagemIP;
-
+    private boolean clicked = false;
     public JTextField campodata;
     private JMenuBar mnBarra;
-    private JMenu mnParticipar, mnChat;
+    public JMenu mnParticipar, mnChat;
     private Image iconeTitulo;
     private ImageIcon background = new ImageIcon(getClass().getResource("programming-flag.png"));
     private JLabel fundo, auxiliar, labelIPhhost;
@@ -138,13 +139,19 @@ public class APP extends JLabel implements ActionListener {
 
     }
 
+
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
+
 
         if (e.getSource().equals(botaoIniciar)) {
             mnParticipar.setEnabled(true);
             mnChat.setEnabled(true);
             new Colaborador(false).jFrameColaborador.show();
+
+
 
 
         } else if (e.getSource().equals(miAutores)) {
@@ -156,6 +163,7 @@ public class APP extends JLabel implements ActionListener {
                 ex.printStackTrace();
             }
             new Colaborador(true).jFrameColaborador.show();
+
 
         }
 
@@ -175,11 +183,11 @@ public class APP extends JLabel implements ActionListener {
             e.printStackTrace();
         }
 
-      //  try {
-            //new ClienteTCP(6000, "").start();
-      //  } catch (IOException e) {
+        //  try {
+        //new ClienteTCP(6000, "").start();
+        //  } catch (IOException e) {
         //    e.printStackTrace();
-       // }
+        // }
         new APP().jFramePrincipal.show();
         ServidorTCP servidorTCP = new ServidorTCP();
 
@@ -194,4 +202,5 @@ public class APP extends JLabel implements ActionListener {
         }
         return iphost;
     }
+
 }
