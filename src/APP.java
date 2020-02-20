@@ -13,7 +13,7 @@ import java.util.Timer;
 
 public class APP extends JLabel implements ActionListener {
 
-    private JLabel  mensagemPorta, mensagemIP;
+    private JLabel mensagemPorta, mensagemIP;
 
     public JTextField campodata;
     private JMenuBar mnBarra;
@@ -29,6 +29,7 @@ public class APP extends JLabel implements ActionListener {
     private Timer timer;
     private int delay = 2000;
     BlinkLabel bl, blIP;
+    private Boolean existeColaborador = false;
 
     public APP() {
         jFramePrincipal = new JFrame("Real time codding");
@@ -72,7 +73,7 @@ public class APP extends JLabel implements ActionListener {
         miEntrarNoChat.addActionListener(this);
         miAutores.addActionListener(this);
         miColaborar.addActionListener(this);
-       // feito.addActionListener(this);
+        // feito.addActionListener(this);
         jFramePrincipal.setJMenuBar(mnBarra);
         //jFramePrincipal.add(numeroContribuintes);
         //jFramePrincipal.add(contribuintes);
@@ -98,7 +99,7 @@ public class APP extends JLabel implements ActionListener {
         //botaoIniciar.setEnabled(false);
 
         //numeroContribuintes.setBounds(380, 470, 150, 30);
-       // contribuintes.setBounds(180, 470, 200, 30);
+        // contribuintes.setBounds(180, 470, 200, 30);
         //feito.setBounds(540, 470, 100, 30);
         jFramePrincipal.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jFramePrincipal.getContentPane().setLayout(null);
@@ -123,7 +124,7 @@ public class APP extends JLabel implements ActionListener {
         bl.setBounds(150, 5, 70, 40);
         bl.setFont(new Font("arial", Font.ITALIC, 14));
         bl.setBorder(new LineBorder(Color.BLUE, 2, true));
-        blIP.setBounds(150, 50, 120,40);
+        blIP.setBounds(150, 50, 120, 40);
         blIP.setFont(new Font("arial", Font.ITALIC, 14));
         blIP.setBorder(new LineBorder(Color.BLUE, 2, true));
         mensagemPorta.setBounds(20, 3, 140, 50);
@@ -136,26 +137,14 @@ public class APP extends JLabel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        //int size = Integer.parseInt(numeroContribuintes.getText());
-
-       // if ((!numeroContribuintes.getText().trim().isEmpty()) && (e.getSource().equals(feito))) {
-          //  botaoIniciar.setEnabled(true);
-        //    feito.setEnabled(false);
-           // numeroContribuintes.setEditable(false);
-      //  }
-
         if (e.getSource().equals(botaoIniciar)) {
+            new Colaborador(false).jFrameColaborador.show();
 
-            //new Colaborador().setSize(size);
-            new Colaborador().jFrameColaborador.show();
-
-            //for (int i = 0; i < size; i++) {
-            //  new Escritorio().jFrame.show();
-            //}
         } else if (e.getSource().equals(miAutores)) {
             JOptionPane.showMessageDialog(null, "Ainda não implementado");
         } else if (e.getSource().equals(miColaborar)) {
-            new Escritorio().jFrame.setVisible(true);
+            new Colaborador(true).jFrameColaborador.show();
+
         }
 
     }

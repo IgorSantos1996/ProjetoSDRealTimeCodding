@@ -22,6 +22,7 @@ public class Comentario implements ActionListener {
         btnEnviar = new JButton("Enviar");
         this.nomeColaborador = nomeColaborador;
         inicializarComponentes();
+
     }
 
     public void inicializarComponentes() {
@@ -47,10 +48,15 @@ public class Comentario implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(btnEnviar)) {
 
+            JTextArea1.setForeground(Color.ORANGE);
+            JTextArea1.setFont(new java.awt.Font("Arial", 2, 20));
+
             JTextArea1.insert("@" + nomeColaborador + ": " + JTextArea2.getText(), JTextArea1.getCaretPosition());
+
             JTextArea1.append("\n");
             JTextArea2.setText("");
         }
     }
+
 
 }

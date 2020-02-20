@@ -6,14 +6,15 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class Colaborador extends JFrame implements ActionListener {
-
+    private Boolean temContribuintes = null;
     private Integer id;
     private String colaborador;
     public JFrame jFrameColaborador;
     private JLabel nomeColaborador;
     private JButton okColaborador;
     public JTextField jTextField;
-    // private int        size;
+
+    private boolean c;
 
 
     public String getColaborador() {
@@ -37,8 +38,8 @@ public class Colaborador extends JFrame implements ActionListener {
         this.id = id;
     }
 
-    public Colaborador() {
-
+    public Colaborador(Boolean existe) {
+        this.c = existe;
         jFrameColaborador = new JFrame("Credenciais Colaborador");
         //jFrameColaborador.setBounds(100, 100, 100, 100);
         URL path = this.getClass().getResource("programming-flag.png");
@@ -77,10 +78,15 @@ public class Colaborador extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource().equals(okColaborador)) {
-
             String getTitle = jTextField.getText();
-            new Escritorio(getTitle).jFrame.show();
-            new Comentario(getTitle).JComentario.show();
+            if(c == false){
+                new Escritorio(getTitle).jFrame.show();
+                new Comentario(getTitle).JComentario.show();
+            }else{
+                new Escritorio(getTitle).jFrame.show();
+            }
+
+
             jFrameColaborador.dispose();
 
         }
