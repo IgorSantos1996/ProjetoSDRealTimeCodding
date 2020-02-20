@@ -3,6 +3,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.InetAddress;
 import java.net.URL;
 import java.text.DateFormat;
 import java.util.Date;
@@ -12,21 +13,22 @@ import java.util.Timer;
 
 public class APP extends JLabel implements ActionListener {
 
-    private JLabel     contribuintes, mensagemPorta;
+    private JLabel contribuintes, mensagemPorta, mensagemIP;
+
     public JTextField campodata, numeroContribuintes;
-    private JMenuBar   mnBarra;
-    private JMenu      mnParticipar;
-    private Image      iconeTitulo;
-    private ImageIcon  background = new ImageIcon(getClass().getResource("programming-flag.png"));
-    private JLabel     fundo, auxiliar;
-    private JMenuItem  miAutores, miColaborar;
-    private JFrame     jFramePrincipal;
-    private JButton    botaoIniciar, feito;
-    Random             random = new Random();
-    Integer            numberAcesso = random.nextInt(10000);
-    private Timer      timer;
-    private int        delay = 2000;
-    BlinkLabel         bl;
+    private JMenuBar mnBarra;
+    private JMenu mnParticipar, nmChat;
+    private Image iconeTitulo;
+    private ImageIcon background = new ImageIcon(getClass().getResource("programming-flag.png"));
+    private JLabel fundo, auxiliar, labelIPhhost;
+    private JMenuItem miAutores, miColaborar, miEntrarNoChat;
+    private JFrame jFramePrincipal;
+    private JButton botaoIniciar, feito;
+    Random random = new Random();
+    Integer numberAcesso = random.nextInt(10000);
+    private Timer timer;
+    private int delay = 2000;
+    BlinkLabel bl, blIP;
 
     public APP() {
         jFramePrincipal = new JFrame("Real time codding");
@@ -37,11 +39,14 @@ public class APP extends JLabel implements ActionListener {
         campodata = new JTextField();
 
         mnParticipar = new JMenu("Participar");
+        miEntrarNoChat = new JMenu("Acessar Chat");
         feito = new JButton("Feito");
         //mnExportar  = new JMenu("Exportar Classe java");
         botaoIniciar = new JButton("Iniciar");
         miAutores = new JMenuItem("Info autores");
+        miEntrarNoChat = new JMenuItem("Entrar");
         mensagemPorta = new JLabel("Porta de acesso");
+        mensagemIP = new JLabel("IP da máquina");
         miColaborar = new JMenuItem("Colaborar");
         inicializarComponentes();
 
@@ -61,7 +66,8 @@ public class APP extends JLabel implements ActionListener {
 
         mnParticipar.add(miColaborar);
         mnBarra.add(mnParticipar);
-
+        mnBarra.add(mnParticipar);
+        miEntrarNoChat.addActionListener(this);
         miAutores.addActionListener(this);
         miColaborar.addActionListener(this);
         feito.addActionListener(this);
@@ -70,12 +76,14 @@ public class APP extends JLabel implements ActionListener {
         jFramePrincipal.add(contribuintes);
         jFramePrincipal.add(feito);
         jFramePrincipal.add(mensagemPorta);
+        jFramePrincipal.add(mensagemIP);
 
         /*Gerando numero de acesso*/
 
         bl = new BlinkLabel(numberAcesso.toString());
-
+        blIP = new BlinkLabel(getIP());
         jFramePrincipal.add(bl);
+        jFramePrincipal.add(blIP);
 
         jFramePrincipal.add(botaoIniciar);
         URL path = this.getClass().getResource("programming-flag.png");
@@ -112,9 +120,14 @@ public class APP extends JLabel implements ActionListener {
         jFramePrincipal.getRootPane().setDefaultButton(botaoIniciar);
         bl.setBounds(150, 5, 70, 40);
         bl.setFont(new Font("arial", Font.ITALIC, 14));
-        bl.setBorder(new LineBorder(Color.BLUE, 5, true));
+        bl.setBorder(new LineBorder(Color.BLUE, 2, true));
+        blIP.setBounds(150, 50, 120,40);
+        blIP.setFont(new Font("arial", Font.ITALIC, 14));
+        blIP.setBorder(new LineBorder(Color.BLUE, 2, true));
         mensagemPorta.setBounds(20, 3, 140, 50);
         mensagemPorta.setFont(new Font("arial", Font.ITALIC, 14));
+        mensagemIP.setBounds(20, 50, 140, 50);
+        mensagemIP.setFont(new Font("arial", Font.ITALIC, 14));
 
     }
 
@@ -135,7 +148,7 @@ public class APP extends JLabel implements ActionListener {
             new Colaborador(size).jFrameColaborador.show();
 
             //for (int i = 0; i < size; i++) {
-              //  new Escritorio().jFrame.show();
+            //  new Escritorio().jFrame.show();
             //}
         } else if (e.getSource().equals(miAutores)) {
             JOptionPane.showMessageDialog(null, "Ainda não implementado");
@@ -160,5 +173,15 @@ public class APP extends JLabel implements ActionListener {
 
         new APP().jFramePrincipal.show();
 
+    }
+
+    public String getIP() {
+        String iphost = "";
+        try {
+            iphost = InetAddress.getLocalHost().getHostAddress();
+        } catch (Exception e) {
+
+        }
+        return iphost;
     }
 }
