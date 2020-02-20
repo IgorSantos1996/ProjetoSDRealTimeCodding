@@ -7,15 +7,14 @@ import java.util.ArrayList;
 
 public class Colaborador extends JFrame implements ActionListener {
 
-    private Integer    id;
-    private String     colaborador;
-    public  JFrame     jFrameColaborador;
-    private JLabel     nomeColaborador;
-    private JButton    okColaborador;
-    public  JTextField jTextField;
-    private int        size;
+    private Integer id;
+    private String colaborador;
+    public JFrame jFrameColaborador;
+    private JLabel nomeColaborador;
+    private JButton okColaborador;
+    public JTextField jTextField;
+    // private int        size;
 
-    public Colaborador(){}
 
     public String getColaborador() {
         return colaborador;
@@ -38,7 +37,7 @@ public class Colaborador extends JFrame implements ActionListener {
         this.id = id;
     }
 
-    public Colaborador(int size) {
+    public Colaborador() {
 
         jFrameColaborador = new JFrame("Credenciais Colaborador");
         //jFrameColaborador.setBounds(100, 100, 100, 100);
@@ -48,7 +47,7 @@ public class Colaborador extends JFrame implements ActionListener {
         jTextField = new JTextField();
         nomeColaborador = new JLabel("Nome do Colaborador");
         okColaborador = new JButton("OK");
-        this.size = size;
+        //this.size = size;
         inicializar_componentes();
 
     }
@@ -79,19 +78,9 @@ public class Colaborador extends JFrame implements ActionListener {
 
         if (e.getSource().equals(okColaborador)) {
 
-            System.out.println(this.size);
             String getTitle = jTextField.getText();
-
-            for(int i = 0; i < this.size; i++) {
-                //jFrameColaborador.dispose();
-                if(i == 0) {
-                    new Escritorio(getTitle).jFrame.show();
-                } else
-                    new Escritorio("NOME DE OUTRO COLABORADOR").jFrame.show();
-            }
-
+            new Escritorio(getTitle).jFrame.show();
             new Comentario().JComentario.show();
-
             jFrameColaborador.dispose();
 
         }

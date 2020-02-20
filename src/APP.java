@@ -13,17 +13,17 @@ import java.util.Timer;
 
 public class APP extends JLabel implements ActionListener {
 
-    private JLabel contribuintes, mensagemPorta, mensagemIP;
+    private JLabel  mensagemPorta, mensagemIP;
 
-    public JTextField campodata, numeroContribuintes;
+    public JTextField campodata;
     private JMenuBar mnBarra;
-    private JMenu mnParticipar, nmChat;
+    private JMenu mnParticipar, mnChat;
     private Image iconeTitulo;
     private ImageIcon background = new ImageIcon(getClass().getResource("programming-flag.png"));
     private JLabel fundo, auxiliar, labelIPhhost;
     private JMenuItem miAutores, miColaborar, miEntrarNoChat;
     private JFrame jFramePrincipal;
-    private JButton botaoIniciar, feito;
+    private JButton botaoIniciar;
     Random random = new Random();
     Integer numberAcesso = random.nextInt(10000);
     private Timer timer;
@@ -34,17 +34,18 @@ public class APP extends JLabel implements ActionListener {
         jFramePrincipal = new JFrame("Real time codding");
         mnBarra = new JMenuBar();
         //miSair = new JMenu("Sair");
-        contribuintes = new JLabel("Quantidade de participantes");
-        numeroContribuintes = new JTextField();
+        //contribuintes = new JLabel("Quantidade de participantes");
+        //numeroContribuintes = new JTextField();
         campodata = new JTextField();
 
         mnParticipar = new JMenu("Participar");
+        mnChat = new JMenu("Chat");
         miEntrarNoChat = new JMenu("Acessar Chat");
-        feito = new JButton("Feito");
+        //feito = new JButton("Feito");
         //mnExportar  = new JMenu("Exportar Classe java");
         botaoIniciar = new JButton("Iniciar");
         miAutores = new JMenuItem("Info autores");
-        miEntrarNoChat = new JMenuItem("Entrar");
+
         mensagemPorta = new JLabel("Porta de acesso");
         mensagemIP = new JLabel("IP da máquina");
         miColaborar = new JMenuItem("Colaborar");
@@ -63,18 +64,19 @@ public class APP extends JLabel implements ActionListener {
         jFramePrincipal.setContentPane(auxiliar);
 
         botaoIniciar.addActionListener(this);
-
+        mnBarra.add(mnParticipar);
+        mnBarra.add(mnChat);
         mnParticipar.add(miColaborar);
-        mnBarra.add(mnParticipar);
-        mnBarra.add(mnParticipar);
+        mnChat.add(miEntrarNoChat);
+
         miEntrarNoChat.addActionListener(this);
         miAutores.addActionListener(this);
         miColaborar.addActionListener(this);
-        feito.addActionListener(this);
+       // feito.addActionListener(this);
         jFramePrincipal.setJMenuBar(mnBarra);
-        jFramePrincipal.add(numeroContribuintes);
-        jFramePrincipal.add(contribuintes);
-        jFramePrincipal.add(feito);
+        //jFramePrincipal.add(numeroContribuintes);
+        //jFramePrincipal.add(contribuintes);
+        //jFramePrincipal.add(feito);
         jFramePrincipal.add(mensagemPorta);
         jFramePrincipal.add(mensagemIP);
 
@@ -93,11 +95,11 @@ public class APP extends JLabel implements ActionListener {
 
         botaoIniciar.setBounds(380, 520, 100, 30);
 
-        botaoIniciar.setEnabled(false);
+        //botaoIniciar.setEnabled(false);
 
-        numeroContribuintes.setBounds(380, 470, 150, 30);
-        contribuintes.setBounds(180, 470, 200, 30);
-        feito.setBounds(540, 470, 100, 30);
+        //numeroContribuintes.setBounds(380, 470, 150, 30);
+       // contribuintes.setBounds(180, 470, 200, 30);
+        //feito.setBounds(540, 470, 100, 30);
         jFramePrincipal.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jFramePrincipal.getContentPane().setLayout(null);
         jFramePrincipal.setPreferredSize(new java.awt.Dimension(900, 650));
@@ -114,9 +116,9 @@ public class APP extends JLabel implements ActionListener {
         campodata.setFont(new Font("arial", Font.BOLD, 16));
         jFramePrincipal.add(campodata);
         campodata.setEnabled(false);
-        miColaborar.setEnabled(false);
-        contribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
-        numeroContribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
+
+        //contribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
+        //numeroContribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
         jFramePrincipal.getRootPane().setDefaultButton(botaoIniciar);
         bl.setBounds(150, 5, 70, 40);
         bl.setFont(new Font("arial", Font.ITALIC, 14));
@@ -134,18 +136,18 @@ public class APP extends JLabel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        int size = Integer.parseInt(numeroContribuintes.getText());
+        //int size = Integer.parseInt(numeroContribuintes.getText());
 
-        if ((!numeroContribuintes.getText().trim().isEmpty()) && (e.getSource().equals(feito))) {
-            botaoIniciar.setEnabled(true);
-            feito.setEnabled(false);
-            numeroContribuintes.setEditable(false);
-        }
+       // if ((!numeroContribuintes.getText().trim().isEmpty()) && (e.getSource().equals(feito))) {
+          //  botaoIniciar.setEnabled(true);
+        //    feito.setEnabled(false);
+           // numeroContribuintes.setEditable(false);
+      //  }
 
         if (e.getSource().equals(botaoIniciar)) {
-            miColaborar.setEnabled(true);
+
             //new Colaborador().setSize(size);
-            new Colaborador(size).jFrameColaborador.show();
+            new Colaborador().jFrameColaborador.show();
 
             //for (int i = 0; i < size; i++) {
             //  new Escritorio().jFrame.show();

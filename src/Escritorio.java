@@ -17,6 +17,7 @@ public class Escritorio {
         initComponents(nome);
         numeroLinhas = new LinhasNoJTextArea(jTextArea1);
         jScrollPane1.setRowHeaderView(numeroLinhas);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -32,6 +33,9 @@ public class Escritorio {
         jTextArea1.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
+        //jFrame.setLocationRelativeTo(null);
+        jFrame.setLocation(750, 200);
+
 
         GroupLayout layout = new GroupLayout(jFrame.getContentPane());
         jFrame.getContentPane().setLayout(layout);
