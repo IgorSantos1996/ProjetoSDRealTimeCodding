@@ -46,10 +46,9 @@ public class Comentario implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(btnEnviar)) {
-            JTextArea1.insert("@" + nomeColaborador + ": " + JTextArea2.getText(), this.pos);
-            JTextArea1.setWrapStyleWord(true);
 
-            this.pos += 1;
+            JTextArea1.insert("@" + nomeColaborador + ": " + JTextArea2.getText(), JTextArea1.getCaretPosition());
+            JTextArea1.append("\n");
             JTextArea2.setText("");
         }
     }
