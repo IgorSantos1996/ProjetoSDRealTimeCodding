@@ -135,6 +135,7 @@ public class APP extends JLabel implements ActionListener {
         mensagemIP.setBounds(20, 50, 140, 50);
         mensagemIP.setFont(new Font("arial", Font.ITALIC, 14));
 
+
     }
 
     @Override
@@ -174,6 +175,11 @@ public class APP extends JLabel implements ActionListener {
             e.printStackTrace();
         }
 
+      //  try {
+            //new ClienteTCP(6000, "").start();
+      //  } catch (IOException e) {
+        //    e.printStackTrace();
+       // }
         new APP().jFramePrincipal.show();
         ServidorTCP servidorTCP = new ServidorTCP();
 
