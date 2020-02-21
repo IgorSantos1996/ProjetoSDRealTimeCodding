@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -83,7 +84,16 @@ public class Colaborador extends JFrame implements ActionListener {
                 new Escritorio(getTitle).jFrame.show();
                 new Comentario(getTitle).JComentario.show();
             }else{
+
+
+                try {
+                    ClienteTCP  clienteTCP = new ClienteTCP(6000,jTextField.getText());
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+
                 new Escritorio(getTitle).jFrame.show();
+
             }
 
 

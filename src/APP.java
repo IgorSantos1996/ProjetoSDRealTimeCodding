@@ -3,6 +3,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.URL;
 import java.text.DateFormat;
@@ -25,7 +26,7 @@ public class APP extends JLabel implements ActionListener {
     private JFrame jFramePrincipal;
     private JButton botaoIniciar;
     Random random = new Random();
-    Integer numberAcesso = random.nextInt(10000);
+    //public Integer numberAcesso = random.nextInt(10000);
     private Timer timer;
     private int delay = 2000;
     BlinkLabel bl, blIP;
@@ -68,6 +69,7 @@ public class APP extends JLabel implements ActionListener {
         mnBarra.add(mnParticipar);
         mnBarra.add(mnChat);
         mnParticipar.add(miColaborar);
+        mnParticipar.setEnabled(false);
         mnChat.add(miEntrarNoChat);
 
         miEntrarNoChat.addActionListener(this);
@@ -83,7 +85,7 @@ public class APP extends JLabel implements ActionListener {
 
         /*Gerando numero de acesso*/
 
-        bl = new BlinkLabel(numberAcesso.toString());
+        bl = new BlinkLabel("6000");
         blIP = new BlinkLabel(getIP());
         jFramePrincipal.add(bl);
         jFramePrincipal.add(blIP);
@@ -117,6 +119,7 @@ public class APP extends JLabel implements ActionListener {
         campodata.setFont(new Font("arial", Font.BOLD, 16));
         jFramePrincipal.add(campodata);
         campodata.setEnabled(false);
+        mnChat.setEnabled(false);
 
         //contribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
         //numeroContribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
@@ -138,11 +141,19 @@ public class APP extends JLabel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource().equals(botaoIniciar)) {
+            mnParticipar.setEnabled(true);
+            mnChat.setEnabled(true);
             new Colaborador(false).jFrameColaborador.show();
+
 
         } else if (e.getSource().equals(miAutores)) {
             JOptionPane.showMessageDialog(null, "Ainda não implementado");
         } else if (e.getSource().equals(miColaborar)) {
+            try {
+                ClienteTCP clienteTCP = new ClienteTCP(6000, "");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
             new Colaborador(true).jFrameColaborador.show();
 
         }
@@ -151,6 +162,7 @@ public class APP extends JLabel implements ActionListener {
 
     public static void main(String[] args) {
         try {
+
 
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
@@ -163,6 +175,7 @@ public class APP extends JLabel implements ActionListener {
         }
 
         new APP().jFramePrincipal.show();
+        ServidorTCP servidorTCP = new ServidorTCP();
 
     }
 
