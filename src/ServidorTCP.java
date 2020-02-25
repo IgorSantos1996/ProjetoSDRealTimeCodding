@@ -26,7 +26,7 @@ public class ServidorTCP {
 
                 sentencaCliente = inFromClient.readLine();
 
-                System.out.println("Nome do colabordor: "+sentencaCliente);
+                System.out.println("Nome do colaborador: "+sentencaCliente);
 
             }
 
