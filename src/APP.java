@@ -70,7 +70,7 @@ public class APP extends JLabel implements ActionListener {
         mnBarra.add(mnParticipar);
         mnBarra.add(mnChat);
         mnParticipar.add(miColaborar);
-        mnParticipar.setEnabled(false);
+        //mnParticipar.setEnabled(false);
         mnChat.add(miEntrarNoChat);
 
         miEntrarNoChat.addActionListener(this);
@@ -120,7 +120,7 @@ public class APP extends JLabel implements ActionListener {
         campodata.setFont(new Font("arial", Font.BOLD, 16));
         jFramePrincipal.add(campodata);
         campodata.setEnabled(false);
-        mnChat.setEnabled(false);
+        //mnChat.setEnabled(false);
 
         //contribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
         //numeroContribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
@@ -136,23 +136,15 @@ public class APP extends JLabel implements ActionListener {
         mensagemIP.setBounds(20, 50, 140, 50);
         mensagemIP.setFont(new Font("arial", Font.ITALIC, 14));
 
-
     }
-
-
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-
         if (e.getSource().equals(botaoIniciar)) {
-            mnParticipar.setEnabled(true);
-            mnChat.setEnabled(true);
+            //mnParticipar.setEnabled(true);
+            //mnChat.setEnabled(true);
             new Colaborador(false).jFrameColaborador.show();
-
-
-
 
         } else if (e.getSource().equals(miAutores)) {
             JOptionPane.showMessageDialog(null, "Ainda não implementado");
@@ -164,14 +156,13 @@ public class APP extends JLabel implements ActionListener {
             }
             new Colaborador(true).jFrameColaborador.show();
 
-
         }
 
     }
 
     public static void main(String[] args) {
-        try {
 
+        try {
 
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
