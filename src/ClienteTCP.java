@@ -1,14 +1,16 @@
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-public class ClienteTCP{
+public class ClienteTCP {
 
     Integer porta;
     String nomeColaborador, sentenca;
     public Boolean conect = false;
+
     public ClienteTCP(Integer porta, String nomeColaborador) throws IOException {
 
         //System.out.println(porta);
@@ -22,7 +24,7 @@ public class ClienteTCP{
         //System.out.println(this.nomeColaborador + " Conectou: " + clientSocket.isConnected());
         conect = clientSocket.isConnected();
 
-        if(conect == true){
+        if (conect == true) {
 
             //Cria cadeia de saida conectada ao socket
             DataOutputStream outToServer =
@@ -34,10 +36,18 @@ public class ClienteTCP{
                             InputStreamReader(clientSocket.getInputStream()));
 
             //Envia uma linha ao servidor
-            outToServer.writeBytes(this.nomeColaborador );
+            outToServer.writeBytes(this.nomeColaborador);
+
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Servidor não est ativo", "MENSAGEM SERVIDOR",
+                    JOptionPane.ERROR_MESSAGE);
+            ServidorTCP servidorTCP = new ServidorTCP();
+            JOptionPane.showMessageDialog(null, "Servidor agora esta ativo", "MENSAGEM SERVIDOR",
+                    JOptionPane.WARNING_MESSAGE);
+
 
         }
 
     }
-
 }

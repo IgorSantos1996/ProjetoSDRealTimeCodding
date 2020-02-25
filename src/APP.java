@@ -180,7 +180,6 @@ public class APP extends JLabel implements ActionListener {
         //    e.printStackTrace();
         // }
         new APP().jFramePrincipal.show();
-        ServidorTCP servidorTCP = new ServidorTCP();
 
     }
 

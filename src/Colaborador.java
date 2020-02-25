@@ -79,6 +79,7 @@ public class Colaborador extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource().equals(okColaborador)) {
+
             String getTitle = jTextField.getText();
             if(c == false){
                 new Escritorio(getTitle).jFrame.show();
@@ -95,7 +96,6 @@ public class Colaborador extends JFrame implements ActionListener {
                 new Escritorio(getTitle).jFrame.show();
 
             }
-
 
             jFrameColaborador.dispose();
 
