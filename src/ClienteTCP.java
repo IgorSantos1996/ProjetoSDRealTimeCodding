@@ -10,17 +10,18 @@ public class ClienteTCP {
     Integer porta;
     String nomeColaborador, sentenca;
     public Boolean conect = false;
+    Escritorio escritorio;
 
     public ClienteTCP(Integer porta, String nomeColaborador) throws IOException {
 
-        //System.out.println(porta);
-        //System.out.println(new APP().getIP());
-        //Cria cadeia de entrada
+
         BufferedReader inFromUser =
                 new BufferedReader(new InputStreamReader(System.in));
 
         this.nomeColaborador = nomeColaborador;
-        Socket clientSocket = new Socket(new APP().getIP(), porta);
+
+
+        Socket clientSocket = new Socket("192.168.1.7", porta);
         //System.out.println(this.nomeColaborador + " Conectou: " + clientSocket.isConnected());
         conect = clientSocket.isConnected();
 
@@ -37,17 +38,13 @@ public class ClienteTCP {
 
             //Envia uma linha ao servidor
             outToServer.writeBytes(this.nomeColaborador);
+            outToServer.writeUTF(escritorio.jTextArea1.getText());
+
 
         } else {
-
-            JOptionPane.showMessageDialog(null, "Servidor não est ativo", "MENSAGEM SERVIDOR",
-                    JOptionPane.ERROR_MESSAGE);
-            ServidorTCP servidorTCP = new ServidorTCP();
-            JOptionPane.showMessageDialog(null, "Servidor agora esta ativo", "MENSAGEM SERVIDOR",
-                    JOptionPane.WARNING_MESSAGE);
-
-
+            System.out.println("Cliente não está conectada");
         }
+
 
     }
 }

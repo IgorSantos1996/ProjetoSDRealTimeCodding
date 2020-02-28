@@ -32,6 +32,7 @@ public class APP extends JLabel implements ActionListener {
     private int delay = 2000;
     BlinkLabel bl, blIP;
     private Boolean existeColaborador = false;
+    private Integer contador = 0;
 
     public APP() {
         jFramePrincipal = new JFrame("Real time codding");
@@ -142,20 +143,16 @@ public class APP extends JLabel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource().equals(botaoIniciar)) {
-            //mnParticipar.setEnabled(true);
-            //mnChat.setEnabled(true);
-            new Colaborador(false).jFrameColaborador.show();
+            JOptionPane.showMessageDialog(null, "Servidor agora esta ativo", "MENSAGEM SERVIDOR",
+                    JOptionPane.WARNING_MESSAGE);
+
+            botaoIniciar.setEnabled(false);
 
         } else if (e.getSource().equals(miAutores)) {
             JOptionPane.showMessageDialog(null, "Ainda não implementado");
         } else if (e.getSource().equals(miColaborar)) {
-            try {
-                ClienteTCP clienteTCP = new ClienteTCP(6000, "");
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            new Colaborador(true).jFrameColaborador.show();
-
+            contador++;
+            new Colaborador(contador).jFrameColaborador.show();
         }
 
     }
@@ -180,10 +177,10 @@ public class APP extends JLabel implements ActionListener {
         //    e.printStackTrace();
         // }
         new APP().jFramePrincipal.show();
-
+        ServidorTCP servidorTCP = new ServidorTCP();
     }
 
-    public String getIP() {
+    public static String getIP() {
         String iphost = "";
         try {
             iphost = InetAddress.getLocalHost().getHostAddress();

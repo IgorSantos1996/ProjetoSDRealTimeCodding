@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 
 public class Colaborador extends JFrame implements ActionListener {
     private Boolean temContribuintes = null;
@@ -15,7 +14,7 @@ public class Colaborador extends JFrame implements ActionListener {
     private JButton okColaborador;
     public JTextField jTextField;
 
-    private boolean c;
+    private Integer c;
 
 
     public String getColaborador() {
@@ -39,7 +38,7 @@ public class Colaborador extends JFrame implements ActionListener {
         this.id = id;
     }
 
-    public Colaborador(Boolean existe) {
+    public Colaborador(Integer existe) {
         this.c = existe;
         jFrameColaborador = new JFrame("Credenciais Colaborador");
         //jFrameColaborador.setBounds(100, 100, 100, 100);
@@ -81,20 +80,28 @@ public class Colaborador extends JFrame implements ActionListener {
         if (e.getSource().equals(okColaborador)) {
 
             String getTitle = jTextField.getText();
-            if(c == false){
-                new Escritorio(getTitle).jFrame.show();
-                new Comentario(getTitle).JComentario.show();
-            }else{
 
-
+            //
+            if (c == 1) {
                 try {
-                    ClienteTCP  clienteTCP = new ClienteTCP(6000,jTextField.getText());
+                    ClienteTCP clienteTCP = new ClienteTCP(6000, jTextField.getText());
+                    new Escritorio(getTitle).jFrame.show();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
+                //Clovis comentou a linha abaixo em 27/02/2020
+                //new Escritorio(getTitle).jFrame.show();
+                new Comentario(getTitle).JComentario.show();
+                System.out.println("Ordem de colaboradores: " + c);
 
-                new Escritorio(getTitle).jFrame.show();
-
+            } else {
+                try {
+                    ClienteTCP clienteTCP = new ClienteTCP(6000, jTextField.getText());
+                    new Escritorio(getTitle).jFrame.show();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                System.out.println("Ja existe colaborador!!");
             }
 
             jFrameColaborador.dispose();

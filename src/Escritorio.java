@@ -5,7 +5,7 @@ import java.net.URL;
 public class Escritorio {
 
     private JScrollPane jScrollPane1;
-    private JTextArea   jTextArea1;
+    public JTextArea   jTextArea1;
     public JFrame       jFrame;
     public JLabel       jlabelnome;
 
