@@ -14,7 +14,11 @@ public class Colaborador extends JFrame implements ActionListener {
     private JButton okColaborador;
     public JTextField jTextField;
 
-    private Integer c;
+    //referente ao id
+    private JLabel idColaborador;
+    private JTextField JTextFieldColaborador;
+
+    //private Integer c;
 
 
     public String getColaborador() {
@@ -25,21 +29,13 @@ public class Colaborador extends JFrame implements ActionListener {
         this.colaborador = colaborador;
     }
 
-    public Colaborador(String colaborador, Integer id) {
-        this.colaborador = colaborador;
-        this.id = id;
-    }
-
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    public Colaborador(Integer existe) {
-        this.c = existe;
+    public Colaborador() {
+        //this.c = existe;
         jFrameColaborador = new JFrame("Credenciais Colaborador");
         //jFrameColaborador.setBounds(100, 100, 100, 100);
         URL path = this.getClass().getResource("programming-flag.png");
@@ -48,6 +44,9 @@ public class Colaborador extends JFrame implements ActionListener {
         jTextField = new JTextField();
         nomeColaborador = new JLabel("Nome do Colaborador");
         okColaborador = new JButton("OK");
+        idColaborador = new JLabel("Id do Colaborador");
+        JTextFieldColaborador = new JTextField();
+
         //this.size = size;
         inicializar_componentes();
 
@@ -58,11 +57,20 @@ public class Colaborador extends JFrame implements ActionListener {
         jFrameColaborador.add(okColaborador);
         jFrameColaborador.add(jTextField);
         jFrameColaborador.add(nomeColaborador);
+        jFrameColaborador.add(JTextFieldColaborador);
+        jFrameColaborador.add(idColaborador);
+
         jTextField.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
+        JTextFieldColaborador.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
         nomeColaborador.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
+        idColaborador.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
+
         okColaborador.setBounds(100, 190, 100, 30);
-        nomeColaborador.setBounds(70, 50, 190, 30);
-        jTextField.setBounds(80, 80, 170, 40);
+        nomeColaborador.setBounds(70, 20, 190, 30);
+        idColaborador.setBounds(70, 110, 190, 30);
+
+        jTextField.setBounds(80, 50, 170, 40);
+        JTextFieldColaborador.setBounds(80, 130, 170, 40);
         okColaborador.addActionListener(this);
 
         jFrameColaborador.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -72,6 +80,7 @@ public class Colaborador extends JFrame implements ActionListener {
         jFrameColaborador.setLocationRelativeTo(null);
         jFrameColaborador.setResizable(false);
 
+
     }
 
     @Override
@@ -80,32 +89,13 @@ public class Colaborador extends JFrame implements ActionListener {
         if (e.getSource().equals(okColaborador)) {
 
             String getTitle = jTextField.getText();
-
-            //
-            if (c == 1) {
-                try {
-                    ClienteTCP clienteTCP = new ClienteTCP(6000, jTextField.getText());
-                    new Escritorio(getTitle).jFrame.show();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-                //Clovis comentou a linha abaixo em 27/02/2020
-                //new Escritorio(getTitle).jFrame.show();
-                new Comentario(getTitle).JComentario.show();
-                System.out.println("Ordem de colaboradores: " + c);
-
-            } else {
-                try {
-                    ClienteTCP clienteTCP = new ClienteTCP(6000, jTextField.getText());
-                    new Escritorio(getTitle).jFrame.show();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-                System.out.println("Ja existe colaborador!!");
-            }
-
-            jFrameColaborador.dispose();
-
+            this.id = Integer.parseInt(JTextFieldColaborador.getText());
+            System.out.println(id);
+            new Escritorio(getTitle).jFrame.show();
         }
+
+        jFrameColaborador.dispose();
+
     }
 }
+

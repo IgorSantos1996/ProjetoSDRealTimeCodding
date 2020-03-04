@@ -25,7 +25,7 @@ public class APP extends JLabel implements ActionListener {
     private JLabel fundo, auxiliar, labelIPhhost;
     private JMenuItem miAutores, miColaborar, miEntrarNoChat;
     private JFrame jFramePrincipal;
-    private JButton botaoIniciar;
+    private JButton botaoIniciar, botaoListarTodosColaboradores;
     Random random = new Random();
     //public Integer numberAcesso = random.nextInt(10000);
     private Timer timer;
@@ -48,6 +48,7 @@ public class APP extends JLabel implements ActionListener {
         //feito = new JButton("Feito");
         //mnExportar  = new JMenu("Exportar Classe java");
         botaoIniciar = new JButton("Iniciar");
+        botaoListarTodosColaboradores = new JButton("Listar Colaboradores");
         miAutores = new JMenuItem("Info autores");
 
         mensagemPorta = new JLabel("Porta de acesso");
@@ -68,6 +69,7 @@ public class APP extends JLabel implements ActionListener {
         jFramePrincipal.setContentPane(auxiliar);
 
         botaoIniciar.addActionListener(this);
+        botaoListarTodosColaboradores.addActionListener(this);
         mnBarra.add(mnParticipar);
         mnBarra.add(mnChat);
         mnParticipar.add(miColaborar);
@@ -91,7 +93,7 @@ public class APP extends JLabel implements ActionListener {
         blIP = new BlinkLabel(getIP());
         jFramePrincipal.add(bl);
         jFramePrincipal.add(blIP);
-
+        jFramePrincipal.add(botaoListarTodosColaboradores);
         jFramePrincipal.add(botaoIniciar);
         URL path = this.getClass().getResource("programming-flag.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(path);
@@ -99,6 +101,7 @@ public class APP extends JLabel implements ActionListener {
         jFramePrincipal.setIconImage(iconeTitulo);
 
         botaoIniciar.setBounds(380, 520, 100, 30);
+        botaoListarTodosColaboradores.setBounds(560, 520, 150, 30);
 
         //botaoIniciar.setEnabled(false);
 
@@ -151,8 +154,10 @@ public class APP extends JLabel implements ActionListener {
         } else if (e.getSource().equals(miAutores)) {
             JOptionPane.showMessageDialog(null, "Ainda não implementado");
         } else if (e.getSource().equals(miColaborar)) {
-            contador++;
-            new Colaborador(contador).jFrameColaborador.show();
+
+            new Colaborador().jFrameColaborador.show();
+        } else if (e.getSource().equals(botaoListarTodosColaboradores)) {
+
         }
 
     }

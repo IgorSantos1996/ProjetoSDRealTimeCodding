@@ -1,17 +1,24 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
 
-public class Escritorio {
+public class Escritorio implements ActionListener {
 
     private JScrollPane jScrollPane1;
-    public JTextArea   jTextArea1;
-    public JFrame       jFrame;
-    public JLabel       jlabelnome;
+    public JTextArea jTextArea1;
+    public JFrame jFrame;
+    public JLabel jlabelnome;
+    //public JButton jbuttonAtualizar;
+    private JMenuBar menuColaborador;
+    public JMenu atualizar, enviar;
+    private JMenuItem atualizarArea, enviar_codigo;
 
     LinhasNoJTextArea numeroLinhas;
 
-    public Escritorio(){}
+    public Escritorio() {
+    }
 
     public Escritorio(String nome) {
         initComponents(nome);
@@ -27,14 +34,33 @@ public class Escritorio {
         jScrollPane1 = new JScrollPane();
         jTextArea1 = new JTextArea();
         jFrame = new JFrame(nome);
+        // jbuttonAtualizar = new JButton("Atualizar");
+        //jFrame.add(jbuttonAtualizar);
+
+        /*Menu*/
+        menuColaborador = new JMenuBar();
+        atualizarArea = new JMenuItem("Atualizar area");
+        enviar_codigo = new JMenuItem("Enviar Codigo");
+        jFrame.setJMenuBar(menuColaborador);
+        atualizar = new JMenu("Atualizar Janela");
+        enviar = new JMenu("Enviar Codigo colaborado");
+
         //jFrame.setTitle(c.jTextField.toString());
         jlabelnome = new JLabel();
         jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        jTextArea1.setFont(new java.awt.Font("Ubuntu", 0, 24));
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
-        //jFrame.setLocationRelativeTo(null);
-        jFrame.setLocation(750, 200);
+        jFrame.setPreferredSize(new java.awt.Dimension(900, 650));
+        jFrame.setLocationRelativeTo(null);
+        jFrame.setResizable(false);
+
+        menuColaborador.add(atualizar);
+        menuColaborador.add(enviar);
+        atualizar.add(atualizarArea);
+        atualizarArea.addActionListener(this);
+        enviar.add(enviar_codigo);
+        enviar_codigo.addActionListener(this);
 
 
         GroupLayout layout = new GroupLayout(jFrame.getContentPane());
@@ -59,4 +85,12 @@ public class Escritorio {
     }//initComponents
 
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(atualizarArea)) {
+            System.out.println("Clicou em atualizar");
+        } else if (e.getSource().equals(enviar_codigo)) {
+            System.out.println("Clicou em enviar");
+        }
+    }
 }
