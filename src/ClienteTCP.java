@@ -11,18 +11,22 @@ public class ClienteTCP {
     String nomeColaborador, sentenca;
     public Boolean conect = false;
     Escritorio escritorio;
+    String mensagem = "";
+
+    public ClienteTCP(String texto){
+        this.mensagem = texto;
+    }
 
     public ClienteTCP(Integer porta, String nomeColaborador) throws IOException {
 
         //this.nomeColaborador = nomeColaborador;
-        Socket clientSocket = new Socket("10.50.197.114", porta);
+        Socket clientSocket = new Socket("10.50.206.205", porta);
         DataOutputStream outToServer =
                 new DataOutputStream(clientSocket.getOutputStream());
 
         BufferedReader inFromServer =
                 new BufferedReader(new
                         InputStreamReader(clientSocket.getInputStream()));
-        String mensagem = "";
 
         mensagem = new MinhaThread().getTemp();
         System.out.println(mensagem);

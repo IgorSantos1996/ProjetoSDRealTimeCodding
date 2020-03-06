@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.HashMap;
@@ -38,7 +39,11 @@ public class MinhaThread extends Thread {
         if (Codigo == 10) {
             //System.out.println("Nome: "+this.nome+"Id: "+this.id+"Texto: "+temp+"Codigo: "+this.Codigo);
             if (!listaColaboradores.containsKey(this.id)) {
+                //antes de inserir no HashMap
                 listaColaboradores.put(this.id, temp);
+                //depois de inserir no HashMap
+                listaColaboradores.forEach((k,v) -> System.out.println("Id: " + k + "Texto da pessoa: "+  v) );
+
             } else {
                 for (Map.Entry<Integer, String> pesquisar : listaColaboradores.entrySet()) {
                     if (this.id == pesquisar.getKey()) {
@@ -66,8 +71,7 @@ public class MinhaThread extends Thread {
     }
 
     public void EnviarTextoAtualizado(String texto) {
-        this.temp = texto;
-
+        ClienteTCP clienteTCP = new ClienteTCP(texto);
     }
 
     public String getTemp() {

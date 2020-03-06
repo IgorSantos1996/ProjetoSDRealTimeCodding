@@ -90,11 +90,11 @@ public class Escritorio implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(atualizarArea)) {
+        if (e.getSource().equals(enviar_codigo)) {
             String textoCodigo = jTextArea1.getText();
             MinhaThread minhaThread = new MinhaThread(this.nome,this.id,textoCodigo,10);
             minhaThread.start();
-        } else if (e.getSource().equals(enviar_codigo)) {
+        } else if (e.getSource().equals(atualizarArea)) {
             MinhaThread minhaThread = new MinhaThread(this.nome, this.id, 11);
             minhaThread.start();
             System.out.println("Clicou em enviar");

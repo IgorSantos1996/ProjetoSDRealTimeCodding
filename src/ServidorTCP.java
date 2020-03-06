@@ -11,6 +11,7 @@ public class ServidorTCP  {
     Socket connectionSocket;
     Escritorio escritorio;
     Colaborador colaborador;
+    String clienteSetence;
     //Escritorio escritorio;
 
     public ServidorTCP() {
@@ -20,8 +21,9 @@ public class ServidorTCP  {
 
             while (true) {
                 connectionSocket = welcomeSocket.accept();
-
-
+                BufferedReader inFromCliente = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
+                clienteSetence = inFromCliente.readLine();
+                System.out.println("Texto do cliente: "+clienteSetence);
             }
 
         } catch (IOException e) {
