@@ -37,12 +37,12 @@ public class MinhaThread extends Thread {
     public void run() {
         temp = this.textoCodigo;
         if (Codigo == 10) {
-            //System.out.println("Nome: "+this.nome+"Id: "+this.id+"Texto: "+temp+"Codigo: "+this.Codigo);
+
             if (!listaColaboradores.containsKey(this.id)) {
-                //antes de inserir no HashMap
+
                 listaColaboradores.put(this.id, temp);
-                //depois de inserir no HashMap
-                listaColaboradores.forEach((k,v) -> System.out.println("Id: " + k + "Texto da pessoa: "+  v) );
+
+                listaColaboradores.forEach((k, v) -> System.out.println("Id: " + k + "Texto da pessoa: " + v));
 
             } else {
                 for (Map.Entry<Integer, String> pesquisar : listaColaboradores.entrySet()) {
@@ -50,20 +50,23 @@ public class MinhaThread extends Thread {
                         listaColaboradores.put(this.id, temp);
                     }
                 }
+                listaColaboradores.forEach((k, v) -> System.out.println("Id: " + k + "Texto da pessoa: " + v));
             }
-            //try {
-             //   socket.close();
-            //} catch (IOException e) {
-              //  e.printStackTrace();
-            //}
+
 
         } else if (Codigo == 11) {
-            temp = "";
+            
             while (true) {
                 for (Map.Entry<Integer, String> pesquisar : listaColaboradores.entrySet()) {
-                    if (this.id == pesquisar.getKey() && temp != pesquisar.getValue()) {
+                    if (temp != pesquisar.getValue()) {
+                        System.out.println("entrei na condição");
                         temp = pesquisar.getValue();
                         EnviarTextoAtualizado(temp);
+                        System.out.println("Testo enviado");
+
+                    } else {
+                        System.out.println("Não entrou na condição");
+
                     }
                 }
             }
