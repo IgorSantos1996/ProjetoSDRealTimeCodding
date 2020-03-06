@@ -16,19 +16,17 @@ public class Escritorio implements ActionListener {
     private JMenuItem atualizarArea, enviar_codigo;
 
     LinhasNoJTextArea numeroLinhas;
+    int id;
 
-    public Escritorio() {
-    }
-
-    public Escritorio(String nome) {
-        initComponents(nome);
+    public Escritorio(String nome, int id) {
+        initComponents(nome, id);
         numeroLinhas = new LinhasNoJTextArea(jTextArea1);
         jScrollPane1.setRowHeaderView(numeroLinhas);
 
     }
 
     @SuppressWarnings("unchecked")
-    public void initComponents(String nome) {
+    public void initComponents(String nome, int id) {
         //Colaborador c = new Colaborador();
         //System.out.println("teste: "+c.jTextField.toString());
         jScrollPane1 = new JScrollPane();
@@ -62,6 +60,7 @@ public class Escritorio implements ActionListener {
         enviar.add(enviar_codigo);
         enviar_codigo.addActionListener(this);
 
+        this.id = id;
 
         GroupLayout layout = new GroupLayout(jFrame.getContentPane());
         jFrame.getContentPane().setLayout(layout);
@@ -90,6 +89,8 @@ public class Escritorio implements ActionListener {
         if (e.getSource().equals(atualizarArea)) {
             System.out.println("Clicou em atualizar");
         } else if (e.getSource().equals(enviar_codigo)) {
+            MinhaThread minhaThread = new MinhaThread(this.id, 10);
+            minhaThread.start();
             System.out.println("Clicou em enviar");
         }
     }

@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.URL;
 import java.text.DateFormat;
 import java.util.Date;
@@ -183,6 +184,9 @@ public class APP extends JLabel implements ActionListener {
         // }
         new APP().jFramePrincipal.show();
         ServidorTCP servidorTCP = new ServidorTCP();
+
+        MinhaThread thread = new MinhaThread(servidorTCP.connectionSocket);
+        thread.start();
     }
 
     public static String getIP() {

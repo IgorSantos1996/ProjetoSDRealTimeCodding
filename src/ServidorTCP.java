@@ -8,7 +8,7 @@ import java.net.Socket;
 import java.util.HashMap;
 
 public class ServidorTCP  {
-
+    Socket connectionSocket;
     Escritorio escritorio;
     Colaborador colaborador;
     //Escritorio escritorio;
@@ -19,7 +19,7 @@ public class ServidorTCP  {
             ServerSocket welcomeSocket = new ServerSocket(6000);
 
             while (true) {
-                Socket connectionSocket = welcomeSocket.accept();
+                connectionSocket = welcomeSocket.accept();
 
 
             }

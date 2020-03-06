@@ -6,20 +6,18 @@ import java.io.IOException;
 import java.net.URL;
 
 public class Colaborador extends JFrame implements ActionListener {
-    private Boolean temContribuintes = null;
-    private Integer id;
-    private String colaborador;
-    public JFrame jFrameColaborador;
-    private JLabel nomeColaborador;
-    private JButton okColaborador;
+
+    private Boolean   temContribuintes = null;
+    public  Integer   id;
+    private String    colaborador;
+    public  JFrame    jFrameColaborador;
+    private JLabel    nomeColaborador;
+    private JButton   okColaborador;
     public JTextField jTextField;
 
     //referente ao id
     private JLabel idColaborador;
     private JTextField JTextFieldColaborador;
-
-    //private Integer c;
-
 
     public String getColaborador() {
         return colaborador;
@@ -29,13 +27,8 @@ public class Colaborador extends JFrame implements ActionListener {
         this.colaborador = colaborador;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-
     public Colaborador() {
-        //this.c = existe;
+
         jFrameColaborador = new JFrame("Credenciais Colaborador");
         //jFrameColaborador.setBounds(100, 100, 100, 100);
         URL path = this.getClass().getResource("programming-flag.png");
@@ -67,7 +60,7 @@ public class Colaborador extends JFrame implements ActionListener {
 
         okColaborador.setBounds(100, 190, 100, 30);
         nomeColaborador.setBounds(70, 20, 190, 30);
-        idColaborador.setBounds(70, 110, 190, 30);
+        idColaborador.setBounds(70, 100, 190, 30);
 
         jTextField.setBounds(80, 50, 170, 40);
         JTextFieldColaborador.setBounds(80, 130, 170, 40);
@@ -80,22 +73,20 @@ public class Colaborador extends JFrame implements ActionListener {
         jFrameColaborador.setLocationRelativeTo(null);
         jFrameColaborador.setResizable(false);
 
-
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource().equals(okColaborador)) {
-
             String getTitle = jTextField.getText();
             this.id = Integer.parseInt(JTextFieldColaborador.getText());
-            System.out.println(id);
-            new Escritorio(getTitle).jFrame.show();
+            new Escritorio(getTitle, id).jFrame.show();
         }
 
         jFrameColaborador.dispose();
 
     }
+
 }
 
