@@ -15,11 +15,19 @@ public class ClienteTCP {
     public ClienteTCP(Integer porta, String nomeColaborador) throws IOException {
 
         //this.nomeColaborador = nomeColaborador;
-
         Socket clientSocket = new Socket("10.50.197.114", porta);
+        DataOutputStream outToServer =
+                new DataOutputStream(clientSocket.getOutputStream());
 
+        BufferedReader inFromServer =
+                new BufferedReader(new
+                        InputStreamReader(clientSocket.getInputStream()));
+        String mensagem = "";
 
-
+        mensagem = new MinhaThread().getTemp();
+        System.out.println(mensagem);
+        outToServer.writeBytes(mensagem);
 
     }
+
 }

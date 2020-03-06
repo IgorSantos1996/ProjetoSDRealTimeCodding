@@ -17,6 +17,9 @@ public class Escritorio implements ActionListener {
 
     LinhasNoJTextArea numeroLinhas;
     int id;
+    String nome;
+
+    public Escritorio(){}
 
     public Escritorio(String nome, int id) {
         initComponents(nome, id);
@@ -61,6 +64,7 @@ public class Escritorio implements ActionListener {
         enviar_codigo.addActionListener(this);
 
         this.id = id;
+        this.nome = nome;
 
         GroupLayout layout = new GroupLayout(jFrame.getContentPane());
         jFrame.getContentPane().setLayout(layout);
@@ -87,9 +91,11 @@ public class Escritorio implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(atualizarArea)) {
-            System.out.println("Clicou em atualizar");
+            String textoCodigo = jTextArea1.getText();
+            MinhaThread minhaThread = new MinhaThread(this.nome,this.id,textoCodigo,10);
+            minhaThread.start();
         } else if (e.getSource().equals(enviar_codigo)) {
-            MinhaThread minhaThread = new MinhaThread(this.id, 10);
+            MinhaThread minhaThread = new MinhaThread(this.nome, this.id, 11);
             minhaThread.start();
             System.out.println("Clicou em enviar");
         }
