@@ -35,6 +35,7 @@ public class MinhaThread extends Thread {
     }
 
     public void run() {
+
         temp = this.textoCodigo;
         if (Codigo == 10) {
 
@@ -55,7 +56,7 @@ public class MinhaThread extends Thread {
 
 
         } else if (Codigo == 11) {
-            
+            System.out.println(temp);
             while (true) {
                 for (Map.Entry<Integer, String> pesquisar : listaColaboradores.entrySet()) {
                     if (temp != pesquisar.getValue()) {
@@ -65,6 +66,7 @@ public class MinhaThread extends Thread {
                         System.out.println("Testo enviado");
 
                     } else {
+                        System.out.println(temp);
                         System.out.println("Não entrou na condição");
 
                     }

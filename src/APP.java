@@ -26,7 +26,7 @@ public class APP extends JLabel implements ActionListener {
     private JLabel fundo, auxiliar, labelIPhhost;
     private JMenuItem miAutores, miColaborar, miEntrarNoChat;
     private JFrame jFramePrincipal;
-    private JButton botaoIniciar, botaoListarTodosColaboradores;
+    private JButton botaoListarTodosColaboradores;
     Random random = new Random();
     //public Integer numberAcesso = random.nextInt(10000);
     private Timer timer;
@@ -48,7 +48,7 @@ public class APP extends JLabel implements ActionListener {
         miEntrarNoChat = new JMenu("Acessar Chat");
         //feito = new JButton("Feito");
         //mnExportar  = new JMenu("Exportar Classe java");
-        botaoIniciar = new JButton("Iniciar");
+        //botaoIniciar = new JButton("Iniciar");
         botaoListarTodosColaboradores = new JButton("Listar Colaboradores");
         miAutores = new JMenuItem("Info autores");
 
@@ -69,7 +69,7 @@ public class APP extends JLabel implements ActionListener {
         auxiliar = new JLabel(background);
         jFramePrincipal.setContentPane(auxiliar);
 
-        botaoIniciar.addActionListener(this);
+        // botaoIniciar.addActionListener(this);
         botaoListarTodosColaboradores.addActionListener(this);
         mnBarra.add(mnParticipar);
         mnBarra.add(mnChat);
@@ -95,14 +95,14 @@ public class APP extends JLabel implements ActionListener {
         jFramePrincipal.add(bl);
         jFramePrincipal.add(blIP);
         jFramePrincipal.add(botaoListarTodosColaboradores);
-        jFramePrincipal.add(botaoIniciar);
+        // jFramePrincipal.add(botaoIniciar);
         URL path = this.getClass().getResource("programming-flag.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(path);
 
         jFramePrincipal.setIconImage(iconeTitulo);
 
-        botaoIniciar.setBounds(380, 520, 100, 30);
-        botaoListarTodosColaboradores.setBounds(560, 520, 150, 30);
+        //botaoIniciar.setBounds(380, 520, 100, 30);
+        botaoListarTodosColaboradores.setBounds(380, 520, 150, 30);
 
         //botaoIniciar.setEnabled(false);
 
@@ -129,7 +129,7 @@ public class APP extends JLabel implements ActionListener {
 
         //contribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
         //numeroContribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
-        jFramePrincipal.getRootPane().setDefaultButton(botaoIniciar);
+        jFramePrincipal.getRootPane().setDefaultButton(botaoListarTodosColaboradores);
         bl.setBounds(150, 5, 70, 40);
         bl.setFont(new Font("arial", Font.ITALIC, 14));
         bl.setBorder(new LineBorder(Color.BLUE, 2, true));
@@ -146,13 +146,7 @@ public class APP extends JLabel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource().equals(botaoIniciar)) {
-            JOptionPane.showMessageDialog(null, "Servidor agora esta ativo", "MENSAGEM SERVIDOR",
-                    JOptionPane.WARNING_MESSAGE);
-
-            botaoIniciar.setEnabled(false);
-
-        } else if (e.getSource().equals(miAutores)) {
+        if (e.getSource().equals(miAutores)) {
             JOptionPane.showMessageDialog(null, "Ainda não implementado");
         } else if (e.getSource().equals(miColaborar)) {
 

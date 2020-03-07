@@ -13,14 +13,14 @@ public class ClienteTCP {
     Escritorio escritorio;
     String mensagem = "";
 
-    public ClienteTCP(String texto){
+    public ClienteTCP(String texto) {
         this.mensagem = texto;
     }
 
     public ClienteTCP(Integer porta, String nomeColaborador) throws IOException {
 
         //this.nomeColaborador = nomeColaborador;
-        Socket clientSocket = new Socket("10.50.206.205", porta);
+        Socket clientSocket = new Socket("192.168.31.154", porta);
         DataOutputStream outToServer =
                 new DataOutputStream(clientSocket.getOutputStream());
 
