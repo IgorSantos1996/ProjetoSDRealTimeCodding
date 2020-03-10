@@ -8,19 +8,23 @@ import java.net.Socket;
 public class ClienteTCP {
 
     Integer porta;
-    String nomeColaborador, sentenca;
+    String nomeColaborador, sentenca, modifiedSentence;
     public Boolean conect = false;
     Escritorio escritorio;
     String mensagem = "";
 
-    public ClienteTCP(String texto) {
+    public ClienteTCP(Integer porta, String nomeColaborador, String texto) throws IOException {
         this.mensagem = texto;
-    }
+        this.porta = porta;
 
-    public ClienteTCP(Integer porta, String nomeColaborador) throws IOException {
+        //cadeia de entrada
+        BufferedReader inFromUser =
+                new BufferedReader(new InputStreamReader(System.in));
 
-        //this.nomeColaborador = nomeColaborador;
-        Socket clientSocket = new Socket("192.168.31.154", porta);
+        Socket clientSocket = new Socket("192.168.31.92", porta);
+        if (clientSocket.isConnected()) {
+            System.out.println("Connected");
+        }
         DataOutputStream outToServer =
                 new DataOutputStream(clientSocket.getOutputStream());
 
@@ -28,10 +32,12 @@ public class ClienteTCP {
                 new BufferedReader(new
                         InputStreamReader(clientSocket.getInputStream()));
 
-        mensagem = new MinhaThread().getTemp();
-        System.out.println(mensagem);
-        outToServer.writeBytes(mensagem);
-
+        sentenca = texto;
+        System.out.println("ClienteTCP: " + sentenca);
+        outToServer.writeBytes(sentenca);
+        modifiedSentence = inFromServer.readLine();
+        System.out.println("FROM SERVER: " + modifiedSentence);
+        clientSocket.close();
     }
 
 }

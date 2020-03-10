@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class Escritorio implements ActionListener {
 
@@ -14,12 +15,14 @@ public class Escritorio implements ActionListener {
     private JMenuBar menuColaborador;
     public JMenu atualizar, enviar;
     private JMenuItem atualizarArea, enviar_codigo;
-
     LinhasNoJTextArea numeroLinhas;
     int id;
     String nome;
+    ArrayList<String> aux = new ArrayList<String>();
+    String textoCodigo;
 
-    public Escritorio(){}
+    public Escritorio() {
+    }
 
     public Escritorio(String nome, int id) {
         initComponents(nome, id);
@@ -91,11 +94,12 @@ public class Escritorio implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(enviar_codigo)) {
-            String textoCodigo = jTextArea1.getText();
-            MinhaThread minhaThread = new MinhaThread(this.nome,this.id,textoCodigo,10);
+            textoCodigo = jTextArea1.getText();
+
+            MinhaThread minhaThread = new MinhaThread(this.nome, this.id, textoCodigo, 10);
             minhaThread.start();
         } else if (e.getSource().equals(atualizarArea)) {
-            MinhaThread minhaThread = new MinhaThread(this.nome, this.id, 11);
+            MinhaThread minhaThread = new MinhaThread(this.nome, this.id, jTextArea1.getText(), 11);
             minhaThread.start();
             System.out.println("Clicou em enviar");
         }

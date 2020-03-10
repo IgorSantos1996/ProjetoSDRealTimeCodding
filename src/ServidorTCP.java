@@ -7,12 +7,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 
-public class ServidorTCP  {
+public class ServidorTCP {
     Socket connectionSocket;
     Escritorio escritorio;
     Colaborador colaborador;
     String clienteSetence;
-    //Escritorio escritorio;
 
     public ServidorTCP() {
         try {
@@ -20,10 +19,14 @@ public class ServidorTCP  {
             ServerSocket welcomeSocket = new ServerSocket(6000);
 
             while (true) {
+
                 connectionSocket = welcomeSocket.accept();
                 BufferedReader inFromCliente = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
+                DataOutputStream outToClient = new DataOutputStream(connectionSocket.getOutputStream());
+
                 clienteSetence = inFromCliente.readLine();
-                System.out.println("Texto do cliente: "+clienteSetence);
+
+                outToClient.writeBytes(clienteSetence.toUpperCase());
             }
 
         } catch (IOException e) {

@@ -30,7 +30,7 @@ public class Colaborador extends JFrame implements ActionListener {
     public Colaborador() {
 
         jFrameColaborador = new JFrame("Credenciais Colaborador");
-        //jFrameColaborador.setBounds(100, 100, 100, 100);
+
         URL path = this.getClass().getResource("programming-flag.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(path);
         jFrameColaborador.setIconImage(iconeTitulo);
@@ -39,8 +39,6 @@ public class Colaborador extends JFrame implements ActionListener {
         okColaborador = new JButton("OK");
         idColaborador = new JLabel("Id do Colaborador");
         JTextFieldColaborador = new JTextField();
-
-        //this.size = size;
         inicializar_componentes();
 
     }
