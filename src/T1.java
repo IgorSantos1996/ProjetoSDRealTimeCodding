@@ -15,7 +15,9 @@ public class T1 extends Thread {
         this.socket = socket;
     }
 
+    public T1() {
 
+    }
     public void run() {
         try {
             BufferedReader inFromCliente = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -30,12 +32,16 @@ public class T1 extends Thread {
                 ServidorTCP1.listaColaboradores.put(nome, texto);
             } else if (codigo.equalsIgnoreCase("11")) {
                 String nome = inFromCliente.readLine();
-                String s = "";
+                String s = null;
+                System.out.println("receber 1");
                 while (true) {
+                    System.out.println("receber 2");
+
                     if (s != ServidorTCP1.listaColaboradores.get(nome)) {
                         s = ServidorTCP1.listaColaboradores.get(nome);
                         DataOutputStream outToClient = new DataOutputStream(socket.getOutputStream());
-                        outToClient.writeBytes(s);
+                        outToClient.writeBytes(s + '\n');
+                        System.out.println("receber 3");
                     }
 
                 }
@@ -45,7 +51,7 @@ public class T1 extends Thread {
                     listaNomes += pesquisar.getKey() + ";";
                 }
                 DataOutputStream outToClient = new DataOutputStream(socket.getOutputStream());
-                outToClient.writeBytes(listaNomes);
+                outToClient.writeBytes(listaNomes + '\n');
             }
 
 
@@ -56,11 +62,4 @@ public class T1 extends Thread {
 
 
     }
-
-    public void EnviarTextoAtualizado(Integer porta, String nomeColaborador, String texto) throws IOException {
-        System.out.println("Texto quando chama o método para enviar ao servidor: " + texto);
-        ClienteTCP clienteTCP = new ClienteTCP(porta, "", texto);
-    }
-
-
 }

@@ -1,11 +1,11 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URL;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
-public class Escritorio implements ActionListener {
+public class Escritorio extends WindowAdapter implements ActionListener {
 
     private JScrollPane jScrollPane1;
     public JTextArea jTextArea1;
@@ -85,8 +85,19 @@ public class Escritorio implements ActionListener {
                                 .addContainerGap())
         );
 
-        jFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+        jFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+
+
+        jFrame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                
+
+            }
+        });
+        jFrame.dispose();
         jFrame.pack();
+
     }//initComponents
 
 
@@ -95,12 +106,14 @@ public class Escritorio implements ActionListener {
         if (e.getSource().equals(enviar_codigo)) {
             textoCodigo = jTextArea1.getText();
 
-            MinhaThread minhaThread = new MinhaThread(this.nome,  textoCodigo, "10");
-            minhaThread.start();
+            ClienteTCP1 clienteTCP1 = new ClienteTCP1(this.nome, textoCodigo, "10");
+            clienteTCP1.start();
         } else if (e.getSource().equals(atualizarArea)) {
-            MinhaThread minhaThread = new MinhaThread(jTextArea1,this.nome, "11");
-            minhaThread.start();
+            ClienteTCP1 clienteTCP1 = new ClienteTCP1(jTextArea1, this.nome, "11");
+            clienteTCP1.start();
             System.out.println("Clicou em enviar");
         }
     }
+
+
 }

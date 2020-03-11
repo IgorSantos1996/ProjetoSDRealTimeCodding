@@ -104,11 +104,6 @@ public class APP extends JLabel implements ActionListener {
         //botaoIniciar.setBounds(380, 520, 100, 30);
         botaoListarTodosColaboradores.setBounds(380, 520, 150, 30);
 
-        //botaoIniciar.setEnabled(false);
-
-        //numeroContribuintes.setBounds(380, 470, 150, 30);
-        // contribuintes.setBounds(180, 470, 200, 30);
-        //feito.setBounds(540, 470, 100, 30);
         jFramePrincipal.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jFramePrincipal.getContentPane().setLayout(null);
         jFramePrincipal.setPreferredSize(new java.awt.Dimension(900, 650));
@@ -171,13 +166,7 @@ public class APP extends JLabel implements ActionListener {
             e.printStackTrace();
         }
 
-        //  try {
-        //new ClienteTCP(6000, "").start();
-        //  } catch (IOException e) {
-        //    e.printStackTrace();
-        // }
         new APP().jFramePrincipal.show();
-
 
     }
 

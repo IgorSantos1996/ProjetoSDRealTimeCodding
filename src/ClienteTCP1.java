@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MinhaThread extends Thread {
+public class ClienteTCP1 extends Thread {
 
     //private static HashMap<Integer, String> listaColaboradores = new HashMap<>();
     String Codigo; // 10, 11 ou 12
@@ -17,14 +17,15 @@ public class MinhaThread extends Thread {
     String nome, textoCodigo;
     Socket socket;
     JTextArea j;
+    Thread Minhathread;
 
-    public MinhaThread(String nome, String textoCodigo, String Codigo) {
+    public ClienteTCP1(String nome, String textoCodigo, String Codigo) {
         this.nome = nome;
         this.textoCodigo = textoCodigo;
         this.Codigo = Codigo;
     }
 
-    public MinhaThread(JTextArea j, String nome, String Codigo) {
+    public ClienteTCP1(JTextArea j, String nome, String Codigo) {
         this.nome = nome;
         this.Codigo = Codigo;
         this.j = j;
@@ -33,36 +34,49 @@ public class MinhaThread extends Thread {
 
     public void run() {
 
-        if (Codigo == "10") {
+        if (Codigo.equalsIgnoreCase("10")) {
             try {
-                System.out.println("teste1");
+
                 Socket clientSocket = new Socket("192.168.137.81", 6000);
                 DataOutputStream outToServer =
                         new DataOutputStream(clientSocket.getOutputStream());
-                System.out.println("teste2");
+
                 outToServer.writeBytes(Codigo + '\n');
-                System.out.println(Codigo);
+
                 outToServer.writeBytes(nome + '\n');
-                System.out.println(nome);
+
                 outToServer.writeBytes(textoCodigo + '\n');
-                System.out.println(textoCodigo);
+
                 clientSocket.close();
-                System.out.println("teste3");
 
 
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }
 
-        } else if (Codigo == "11") {
-            j.setText("bsdnfdsnfdsnfdsn");
+        } else if (Codigo.equalsIgnoreCase("11")) {
+            //j.setText("bsdnfdsnfdsnfdsn");
+            try {
+                Socket clienteSocket = new Socket("192.168.137.81", 6000);
+                DataOutputStream outToServer =
+                        new DataOutputStream(clienteSocket.getOutputStream());
+                outToServer.writeBytes(Codigo + '\n');
+                outToServer.writeBytes(nome + '\n');
+                BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clienteSocket.getInputStream()));
+                while (true) {
+
+                    String sentence = inFromServer.readLine();
+                    System.out.println("Sentence: " + sentence);
+                    //j.setText(sentence);
+                    //new T1().stop();
+
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
-
-    /*public void EnviarTextoAtualizado(Integer porta, String nomeColaborador, String texto) throws IOException {
-        System.out.println("Texto quando chama o método para enviar ao servidor: " + texto);
-        ClienteTCP clienteTCP = new ClienteTCP(porta, "", texto);
-    }*/
 
 
 }
