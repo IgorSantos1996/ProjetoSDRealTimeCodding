@@ -6,6 +6,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class Escritorio extends WindowAdapter implements ActionListener {
+private ClienteTCP1 clienteTCP2;
 
     private JScrollPane jScrollPane1;
     public JTextArea jTextArea1;
@@ -85,13 +86,14 @@ public class Escritorio extends WindowAdapter implements ActionListener {
                                 .addContainerGap())
         );
 
-        jFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        jFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 
 
         jFrame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                
+                if (clienteTCP2!=null)
+                    clienteTCP2.teste();
 
             }
         });
@@ -109,8 +111,8 @@ public class Escritorio extends WindowAdapter implements ActionListener {
             ClienteTCP1 clienteTCP1 = new ClienteTCP1(this.nome, textoCodigo, "10");
             clienteTCP1.start();
         } else if (e.getSource().equals(atualizarArea)) {
-            ClienteTCP1 clienteTCP1 = new ClienteTCP1(jTextArea1, this.nome, "11");
-            clienteTCP1.start();
+            clienteTCP2 = new ClienteTCP1(jTextArea1, this.nome, "11");
+            clienteTCP2.start();
             System.out.println("Clicou em enviar");
         }
     }

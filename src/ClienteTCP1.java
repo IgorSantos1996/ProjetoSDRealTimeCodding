@@ -15,9 +15,12 @@ public class ClienteTCP1 extends Thread {
     String temp = "";
     Integer id;
     String nome, textoCodigo;
-    Socket socket;
+
+    Socket clienteSocket;
+
     JTextArea j;
     Thread Minhathread;
+    boolean conexao=true;
 
     public ClienteTCP1(String nome, String textoCodigo, String Codigo) {
         this.nome = nome;
@@ -29,6 +32,24 @@ public class ClienteTCP1 extends Thread {
         this.nome = nome;
         this.Codigo = Codigo;
         this.j = j;
+    }
+
+
+    public void teste() {
+        System.out.println("entrou em teste");
+        try {
+            System.out.println("entrou em teste 2");
+            if (clienteSocket != null) {
+                System.out.println("entrou em teste 3");
+                DataOutputStream outToServer =
+                        new DataOutputStream(clienteSocket.getOutputStream());
+                System.out.println("entrou em teste 4");
+                outToServer.writeBytes("oi" + '\n');
+                System.out.println("entrou em teste 5");
+            }
+        } catch (Exception ex) {
+            System.out.println("entrou em teste 6");
+        }
     }
 
 
@@ -57,17 +78,17 @@ public class ClienteTCP1 extends Thread {
         } else if (Codigo.equalsIgnoreCase("11")) {
             //j.setText("bsdnfdsnfdsnfdsn");
             try {
-                Socket clienteSocket = new Socket("192.168.137.81", 6000);
+                clienteSocket = new Socket("192.168.137.81", 6000);
                 DataOutputStream outToServer =
                         new DataOutputStream(clienteSocket.getOutputStream());
                 outToServer.writeBytes(Codigo + '\n');
                 outToServer.writeBytes(nome + '\n');
                 BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clienteSocket.getInputStream()));
-                while (true) {
+                while (conexao) {
 
                     String sentence = inFromServer.readLine();
                     System.out.println("Sentence: " + sentence);
-                    //j.setText(sentence);
+                    j.setText(sentence);
                     //new T1().stop();
 
                 }

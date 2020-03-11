@@ -34,14 +34,24 @@ public class T1 extends Thread {
                 String nome = inFromCliente.readLine();
                 String s = null;
                 System.out.println("receber 1");
-                while (true) {
-                    System.out.println("receber 2");
 
+                //String parar="0";
+                TARMENGO TTTT = new TARMENGO(socket);
+                TTTT.start();
+                while (true) {
+
+                    if (TTTT.parar.equalsIgnoreCase("1")) {
+                        System.out.println("entrou isconnected");
+                        return;
+                    }
+
+                    System.out.println(TTTT.parar);
+
+                    System.out.println(ServidorTCP1.listaColaboradores.get(nome));
                     if (s != ServidorTCP1.listaColaboradores.get(nome)) {
                         s = ServidorTCP1.listaColaboradores.get(nome);
                         DataOutputStream outToClient = new DataOutputStream(socket.getOutputStream());
                         outToClient.writeBytes(s + '\n');
-                        System.out.println("receber 3");
                     }
 
                 }
