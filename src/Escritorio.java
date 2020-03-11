@@ -24,15 +24,15 @@ public class Escritorio implements ActionListener {
     public Escritorio() {
     }
 
-    public Escritorio(String nome, int id) {
-        initComponents(nome, id);
+    public Escritorio(String nome) {
+        initComponents(nome);
         numeroLinhas = new LinhasNoJTextArea(jTextArea1);
         jScrollPane1.setRowHeaderView(numeroLinhas);
 
     }
 
     @SuppressWarnings("unchecked")
-    public void initComponents(String nome, int id) {
+    public void initComponents(String nome) {
         //Colaborador c = new Colaborador();
         //System.out.println("teste: "+c.jTextField.toString());
         jScrollPane1 = new JScrollPane();
@@ -66,7 +66,6 @@ public class Escritorio implements ActionListener {
         enviar.add(enviar_codigo);
         enviar_codigo.addActionListener(this);
 
-        this.id = id;
         this.nome = nome;
 
         GroupLayout layout = new GroupLayout(jFrame.getContentPane());
@@ -96,10 +95,10 @@ public class Escritorio implements ActionListener {
         if (e.getSource().equals(enviar_codigo)) {
             textoCodigo = jTextArea1.getText();
 
-            MinhaThread minhaThread = new MinhaThread(this.nome, this.id, textoCodigo, 10);
+            MinhaThread minhaThread = new MinhaThread(this.nome,  textoCodigo, "10");
             minhaThread.start();
         } else if (e.getSource().equals(atualizarArea)) {
-            MinhaThread minhaThread = new MinhaThread(this.nome, this.id, jTextArea1.getText(), 11);
+            MinhaThread minhaThread = new MinhaThread(jTextArea1,this.nome, "11");
             minhaThread.start();
             System.out.println("Clicou em enviar");
         }

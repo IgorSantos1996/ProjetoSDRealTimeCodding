@@ -177,10 +177,8 @@ public class APP extends JLabel implements ActionListener {
         //    e.printStackTrace();
         // }
         new APP().jFramePrincipal.show();
-        ServidorTCP servidorTCP = new ServidorTCP();
 
-        MinhaThread thread = new MinhaThread(servidorTCP.connectionSocket);
-        thread.start();
+
     }
 
     public static String getIP() {

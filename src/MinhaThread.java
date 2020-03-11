@@ -1,5 +1,8 @@
 import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,76 +10,59 @@ import java.util.Map;
 
 public class MinhaThread extends Thread {
 
-    private static HashMap<Integer, String> listaColaboradores = new HashMap<>();
-    Integer Codigo; // 10, 11 ou 12
+    //private static HashMap<Integer, String> listaColaboradores = new HashMap<>();
+    String Codigo; // 10, 11 ou 12
     String temp = "";
     Integer id;
     String nome, textoCodigo;
     Socket socket;
+    JTextArea j;
 
-    public MinhaThread(String nome, int id, String textoCodigo, int Codigo) {
+    public MinhaThread(String nome, String textoCodigo, String Codigo) {
         this.nome = nome;
-        this.id = id;
         this.textoCodigo = textoCodigo;
         this.Codigo = Codigo;
     }
 
-    public MinhaThread(Socket socket) {
-        this.socket = socket;
+    public MinhaThread(JTextArea j, String nome, String Codigo) {
+        this.nome = nome;
+        this.Codigo = Codigo;
+        this.j = j;
     }
 
-    public MinhaThread() {
-    }
 
     public void run() {
 
-        temp = this.textoCodigo;
-        if (Codigo == 10) {
-            if (!listaColaboradores.containsKey(this.id)) {
-                listaColaboradores.put(this.id, temp);
+        if (Codigo == "10") {
+            try {
+                System.out.println("teste1");
+                Socket clientSocket = new Socket("192.168.137.81", 6000);
+                DataOutputStream outToServer =
+                        new DataOutputStream(clientSocket.getOutputStream());
+                System.out.println("teste2");
+                outToServer.writeBytes(Codigo + '\n');
+                System.out.println(Codigo);
+                outToServer.writeBytes(nome + '\n');
+                System.out.println(nome);
+                outToServer.writeBytes(textoCodigo + '\n');
+                System.out.println(textoCodigo);
+                clientSocket.close();
+                System.out.println("teste3");
 
-                listaColaboradores.forEach((k, v) -> System.out.println("Id: " + k + "Texto da pessoa: " + v));
 
-            } else {
-                for (Map.Entry<Integer, String> pesquisar : listaColaboradores.entrySet()) {
-                    if (this.id == pesquisar.getKey()) {
-                        listaColaboradores.put(this.id, temp);
-                    }
-                }
-                listaColaboradores.forEach((k, v) -> System.out.println("Id: " + k + "Texto da pessoa: " + v));
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
             }
 
-
-        } else if (Codigo == 11) {
-            temp = textoCodigo;
-            while (true) {
-                for (Map.Entry<Integer, String> pesquisar : listaColaboradores.entrySet()) {
-                    if (this.temp.equalsIgnoreCase(pesquisar.getValue())) {
-                        JOptionPane.showMessageDialog(null, "Não houve alteração", "Informação do servidor", JOptionPane.WARNING_MESSAGE);
-                    } else {
-                        temp = pesquisar.getValue();
-                        try {
-                            EnviarTextoAtualizado(6000, "", temp);
-                            System.out.println("Testo enviado");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }
-                return;
-            }
-
+        } else if (Codigo == "11") {
+            j.setText("bsdnfdsnfdsnfdsn");
         }
     }
 
-    public void EnviarTextoAtualizado(Integer porta, String nomeColaborador, String texto) throws IOException {
+    /*public void EnviarTextoAtualizado(Integer porta, String nomeColaborador, String texto) throws IOException {
         System.out.println("Texto quando chama o método para enviar ao servidor: " + texto);
         ClienteTCP clienteTCP = new ClienteTCP(porta, "", texto);
-    }
+    }*/
 
-    public String getTemp() {
-        return temp;
-    }
 
 }

@@ -78,8 +78,8 @@ public class Colaborador extends JFrame implements ActionListener {
 
         if (e.getSource().equals(okColaborador)) {
             String getTitle = jTextField.getText();
-            this.id = Integer.parseInt(JTextFieldColaborador.getText());
-            new Escritorio(getTitle, id).jFrame.show();
+          //  this.id = Integer.parseInt(JTextFieldColaborador.getText());
+            new Escritorio(getTitle).jFrame.show();
         }
 
         jFrameColaborador.dispose();
