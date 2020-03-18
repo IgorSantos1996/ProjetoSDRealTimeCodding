@@ -60,7 +60,7 @@ public class T1 extends Thread {
                 //System.out.println("Entrou na listagem de nomes");
                 String listaNomes = "";
                 for (Map.Entry<String, String> pesquisar : ServidorTCP1.listaColaboradores.entrySet()) {
-                    listaNomes += pesquisar.getKey() + " ";
+                    listaNomes += pesquisar.getKey() + ";";
                 }
                 DataOutputStream outToClient = new DataOutputStream(socket.getOutputStream());
                 System.out.println("Lista nomes no servidor: " + listaNomes);

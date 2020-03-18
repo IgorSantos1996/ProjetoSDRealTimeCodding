@@ -65,7 +65,7 @@ public class ClienteTCP1 extends Thread {
         if (Codigo.equalsIgnoreCase("10")) {
             try {
 
-                Socket clientSocket = new Socket("192.168.31.92", 6000);
+                Socket clientSocket = new Socket("192.168.31.112", 6000);
                 DataOutputStream outToServer =
                         new DataOutputStream(clientSocket.getOutputStream());
 
@@ -85,7 +85,7 @@ public class ClienteTCP1 extends Thread {
         } else if (Codigo.equalsIgnoreCase("11")) {
             //j.setText("bsdnfdsnfdsnfdsn");
             try {
-                clienteSocket = new Socket("192.168.31.92", 6000);
+                clienteSocket = new Socket("192.168.31.112", 6000);
                 DataOutputStream outToServer =
                         new DataOutputStream(clienteSocket.getOutputStream());
                 outToServer.writeBytes(Codigo + '\n');
@@ -107,7 +107,7 @@ public class ClienteTCP1 extends Thread {
             }
         } else if (Codigo.equalsIgnoreCase("12")) {
             try {
-                clienteSocket = new Socket("192.168.31.92", 6000);
+                clienteSocket = new Socket("192.168.31.112", 6000);
                 DataOutputStream outToServer =
                         new DataOutputStream(clienteSocket.getOutputStream());
                 outToServer.writeBytes(Codigo + '\n');
@@ -117,8 +117,15 @@ public class ClienteTCP1 extends Thread {
                 while (conexao) {
                     //System.out.println("Entrei aqui no codigo 12 dentro do while");
                     String sentence12 = inFromServer.readLine();
+                    if(!lista.contains(sentence12)) {
+                        lista.add(sentence12);
+                        ListaConexoes listaConexoes = new ListaConexoes(lista);
+                        listaConexoes.show();
+                    }
                     System.out.println("Sentence 12: " + sentence12);
+                    return;
                 }
+
 
 
             } catch (Exception e) {
