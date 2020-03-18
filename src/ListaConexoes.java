@@ -14,6 +14,7 @@ public class ListaConexoes extends JFrame {
 
     String[] colunas = new String[]{"Colaborador"};
     List<String> auxiliar;
+
     public ListaConexoes(List<String> lista) {
 
         auxiliar = new ArrayList<>();
@@ -65,21 +66,41 @@ public class ListaConexoes extends JFrame {
         JScrollPane scrollPane = new JScrollPane(tabela);
         add(scrollPane);
         setVisible(true);
-        tabela.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+        tabela.addMouseListener(new MouseAdapter() {
             @Override
-            public void valueChanged(ListSelectionEvent listSelectionEvent) {
-                if (listSelectionEvent.getValueIsAdjusting())
-                    return;
-                int selected = listSelectionEvent.getFirstIndex();
-                System.out.println("selected: " + selected);
-                for (int i = 0; i < auxiliar.size(); i++) {
-                    if( i == selected){
-                        System.out.println("Auxiliar : " +  auxiliar.get(i));
-                        new Escritorio(auxiliar.get(i));
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    int linha = tabela.getSelectedRow();
+                    for (int i = 0; i < auxiliar.size(); i++) {
+                        if (i == linha) {
+                            System.out.println("Auxiliar : " + auxiliar.get(i));
+                            new Escritorio(auxiliar.get(i)).jFrame.show();
+                        }
                     }
                 }
             }
         });
+        /*tabela.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                if (listSelectionEvent.getValueIsAdjusting())
+                    return;
+                int selected = listSelectionEvent.getLastIndex();
+                //int selected = (int) tabela.getValueAt(tabela.getSelectedRow(), 0);
+                System.out.println("selected: " + selected);
+                for (int i = 0; i < auxiliar.size(); i++) {
+                    if (i == selected) {
+                        System.out.println("Auxiliar : " + auxiliar.get(i));
+                        new Escritorio(auxiliar.get(i)).jFrame.show();
+                    } else
+                        System.out.println("entro aqui");
+                }
+                selected=0;
+            }
+        });
+
+         */
 
     }
 
