@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ClienteTCP1 extends Thread {
@@ -17,8 +18,11 @@ public class ClienteTCP1 extends Thread {
     String nome, textoCodigo;
     Socket clienteSocket;
     JTextArea j;
+    JTable jtables;
     Thread Minhathread;
     boolean conexao = true;
+    List<String> lista = new ArrayList<>();
+
 
     public ClienteTCP1(String nome, String textoCodigo, String Codigo) {
         this.nome = nome;
@@ -34,8 +38,11 @@ public class ClienteTCP1 extends Thread {
 
     public ClienteTCP1(String codigo) {
         this.Codigo = codigo;
+
     }
 
+    public ClienteTCP1() {
+    }
 
     public void teste() {
         System.out.println("entrou em teste");
@@ -52,7 +59,6 @@ public class ClienteTCP1 extends Thread {
             System.out.println("entrou em teste 6");
         }
     }
-
 
     public void run() {
 
@@ -106,12 +112,15 @@ public class ClienteTCP1 extends Thread {
                         new DataOutputStream(clienteSocket.getOutputStream());
                 outToServer.writeBytes(Codigo + '\n');
                 BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clienteSocket.getInputStream()));
-                System.out.println("Entrei aqui no codigo 12");
+                //System.out.println("Entrei aqui no codigo 12");
+
                 while (conexao) {
-                    System.out.println("Entrei aqui no codigo 12 dentro do while");
-                    String sentence = inFromServer.readLine();
-                    System.out.println("Sentence 12: " + sentence);
+                    //System.out.println("Entrei aqui no codigo 12 dentro do while");
+                    String sentence12 = inFromServer.readLine();
+                    System.out.println("Sentence 12: " + sentence12);
                 }
+
+
             } catch (Exception e) {
 
             }

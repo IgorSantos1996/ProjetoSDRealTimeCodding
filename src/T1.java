@@ -25,7 +25,7 @@ public class T1 extends Thread {
             String codigo = inFromCliente.readLine();
             System.out.println(codigo);
             if (codigo.equalsIgnoreCase("10")) {
-                System.out.println("entrou no 10");
+                //System.out.println("entrou no 10");
                 String nome = inFromCliente.readLine();
                 System.out.println(nome);
                 String texto = inFromCliente.readLine();
@@ -34,19 +34,19 @@ public class T1 extends Thread {
             } else if (codigo.equalsIgnoreCase("11")) {
                 String nome = inFromCliente.readLine();
                 String s = null;
-                System.out.println("receber 1");
+                //System.out.println("receber 1");
 
                 //String parar="0";
-                TARMENGO TTTT = new TARMENGO(socket);
+                Auxiliar TTTT = new Auxiliar(socket);
                 TTTT.start();
                 while (true) {
 
                     if (TTTT.parar.equalsIgnoreCase("1")) {
-                        System.out.println("entrou isconnected");
+                        //System.out.println("entrou isconnected");
                         return;
                     }
 
-                    System.out.println(TTTT.parar);
+                    //System.out.println(TTTT.parar);
 
                     System.out.println(ServidorTCP1.listaColaboradores.get(nome));
                     if (s != ServidorTCP1.listaColaboradores.get(nome)) {
@@ -57,16 +57,15 @@ public class T1 extends Thread {
 
                 }
             } else if (codigo.equalsIgnoreCase("12")) {
-                System.out.println("Entrou na listagem de nomes");
+                //System.out.println("Entrou na listagem de nomes");
                 String listaNomes = "";
                 for (Map.Entry<String, String> pesquisar : ServidorTCP1.listaColaboradores.entrySet()) {
-                    listaNomes += pesquisar.getKey() + ";";
+                    listaNomes += pesquisar.getKey() + " ";
                 }
                 DataOutputStream outToClient = new DataOutputStream(socket.getOutputStream());
                 System.out.println("Lista nomes no servidor: " + listaNomes);
                 outToClient.writeBytes(listaNomes + '\n');
             }
-
 
             socket.close();
         } catch (Exception ex) {

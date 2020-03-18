@@ -26,7 +26,7 @@ public class APP extends JLabel implements ActionListener {
     private JLabel fundo, auxiliar, labelIPhhost;
     private JMenuItem miAutores, miColaborar, miEntrarNoChat;
     private JFrame jFramePrincipal;
-    private JButton botaoListarTodosColaboradores;
+    //private JButton botaoListarTodosColaboradores;
     Random random = new Random();
     //public Integer numberAcesso = random.nextInt(10000);
     private Timer timer;
@@ -49,7 +49,7 @@ public class APP extends JLabel implements ActionListener {
         //feito = new JButton("Feito");
         //mnExportar  = new JMenu("Exportar Classe java");
         //botaoIniciar = new JButton("Iniciar");
-        botaoListarTodosColaboradores = new JButton("Listar Colaboradores");
+        //botaoListarTodosColaboradores = new JButton("Listar Colaboradores");
         miAutores = new JMenuItem("Info autores");
 
         mensagemPorta = new JLabel("Porta de acesso");
@@ -70,7 +70,7 @@ public class APP extends JLabel implements ActionListener {
         jFramePrincipal.setContentPane(auxiliar);
 
         // botaoIniciar.addActionListener(this);
-        botaoListarTodosColaboradores.addActionListener(this);
+        //botaoListarTodosColaboradores.addActionListener(this);
         mnBarra.add(mnParticipar);
         mnBarra.add(mnChat);
         mnParticipar.add(miColaborar);
@@ -94,7 +94,7 @@ public class APP extends JLabel implements ActionListener {
         blIP = new BlinkLabel(getIP());
         jFramePrincipal.add(bl);
         jFramePrincipal.add(blIP);
-        jFramePrincipal.add(botaoListarTodosColaboradores);
+        //jFramePrincipal.add(botaoListarTodosColaboradores);
         // jFramePrincipal.add(botaoIniciar);
         URL path = this.getClass().getResource("programming-flag.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(path);
@@ -102,7 +102,7 @@ public class APP extends JLabel implements ActionListener {
         jFramePrincipal.setIconImage(iconeTitulo);
 
         //botaoIniciar.setBounds(380, 520, 100, 30);
-        botaoListarTodosColaboradores.setBounds(380, 520, 150, 30);
+        //botaoListarTodosColaboradores.setBounds(380, 520, 150, 30);
 
         jFramePrincipal.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jFramePrincipal.getContentPane().setLayout(null);
@@ -124,7 +124,7 @@ public class APP extends JLabel implements ActionListener {
 
         //contribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
         //numeroContribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
-        jFramePrincipal.getRootPane().setDefaultButton(botaoListarTodosColaboradores);
+        //jFramePrincipal.getRootPane().setDefaultButton(botaoListarTodosColaboradores);
         bl.setBounds(150, 5, 70, 40);
         bl.setFont(new Font("arial", Font.ITALIC, 14));
         bl.setBorder(new LineBorder(Color.BLUE, 2, true));
