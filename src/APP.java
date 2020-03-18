@@ -144,12 +144,8 @@ public class APP extends JLabel implements ActionListener {
         if (e.getSource().equals(miAutores)) {
             JOptionPane.showMessageDialog(null, "Ainda não implementado");
         } else if (e.getSource().equals(miColaborar)) {
-
             new Colaborador().jFrameColaborador.show();
-        } else if (e.getSource().equals(botaoListarTodosColaboradores)) {
-
         }
-
     }
 
     public static void main(String[] args) {

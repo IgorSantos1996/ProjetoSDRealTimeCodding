@@ -18,6 +18,7 @@ public class T1 extends Thread {
     public T1() {
 
     }
+
     public void run() {
         try {
             BufferedReader inFromCliente = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -56,11 +57,13 @@ public class T1 extends Thread {
 
                 }
             } else if (codigo.equalsIgnoreCase("12")) {
+                System.out.println("Entrou na listagem de nomes");
                 String listaNomes = "";
                 for (Map.Entry<String, String> pesquisar : ServidorTCP1.listaColaboradores.entrySet()) {
                     listaNomes += pesquisar.getKey() + ";";
                 }
                 DataOutputStream outToClient = new DataOutputStream(socket.getOutputStream());
+                System.out.println("Lista nomes no servidor: " + listaNomes);
                 outToClient.writeBytes(listaNomes + '\n');
             }
 

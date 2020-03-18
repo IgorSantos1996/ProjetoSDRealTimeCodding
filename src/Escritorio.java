@@ -6,7 +6,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class Escritorio extends WindowAdapter implements ActionListener {
-private ClienteTCP1 clienteTCP2;
+    private ClienteTCP1 clienteTCP2, clienteTCP3;
 
     private JScrollPane jScrollPane1;
     public JTextArea jTextArea1;
@@ -14,8 +14,8 @@ private ClienteTCP1 clienteTCP2;
     public JLabel jlabelnome;
     //public JButton jbuttonAtualizar;
     private JMenuBar menuColaborador;
-    public JMenu atualizar, enviar;
-    private JMenuItem atualizarArea, enviar_codigo;
+    public JMenu atualizar, enviar, listar;
+    private JMenuItem atualizarArea, enviar_codigo, ListarTodosColaboradores;
     LinhasNoJTextArea numeroLinhas;
     int id;
     String nome;
@@ -46,8 +46,10 @@ private ClienteTCP1 clienteTCP2;
         menuColaborador = new JMenuBar();
         atualizarArea = new JMenuItem("Atualizar area");
         enviar_codigo = new JMenuItem("Enviar Codigo");
+        ListarTodosColaboradores = new JMenuItem("Listar Todos os Colaboradores");
         jFrame.setJMenuBar(menuColaborador);
         atualizar = new JMenu("Atualizar Janela");
+        listar = new JMenu("Listar colaboradores");
         enviar = new JMenu("Enviar Codigo colaborado");
 
         //jFrame.setTitle(c.jTextField.toString());
@@ -62,10 +64,13 @@ private ClienteTCP1 clienteTCP2;
 
         menuColaborador.add(atualizar);
         menuColaborador.add(enviar);
+        menuColaborador.add(listar);
         atualizar.add(atualizarArea);
         atualizarArea.addActionListener(this);
         enviar.add(enviar_codigo);
         enviar_codigo.addActionListener(this);
+        listar.add(ListarTodosColaboradores);
+        ListarTodosColaboradores.addActionListener(this);
 
         this.nome = nome;
 
@@ -92,7 +97,7 @@ private ClienteTCP1 clienteTCP2;
         jFrame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                if (clienteTCP2!=null)
+                if (clienteTCP2 != null)
                     clienteTCP2.teste();
 
             }
@@ -114,6 +119,9 @@ private ClienteTCP1 clienteTCP2;
             clienteTCP2 = new ClienteTCP1(jTextArea1, this.nome, "11");
             clienteTCP2.start();
             System.out.println("Clicou em enviar");
+        } else if (e.getSource().equals(ListarTodosColaboradores)) {
+            clienteTCP3 = new ClienteTCP1("12");
+            clienteTCP3.start();
         }
     }
 
