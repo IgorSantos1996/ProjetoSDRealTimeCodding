@@ -1,6 +1,10 @@
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,10 +13,10 @@ public class ListaConexoes extends JFrame {
     Object[][] dados;
 
     String[] colunas = new String[]{"Colaborador"};
-
+    List<String> auxiliar;
     public ListaConexoes(List<String> lista) {
 
-        List<String> auxiliar = new ArrayList<>();
+        auxiliar = new ArrayList<>();
         String registro;
         String concatena = "";
         int pos = 0;
@@ -26,11 +30,8 @@ public class ListaConexoes extends JFrame {
                 pos += 1;
                 concatena = "";
             }
-
-
-            //auxiliar.add(lista.get(i).split(";"));
-
         }
+
         dados = new Object[auxiliar.size()][auxiliar.size()];
         for (int i = 0; i < auxiliar.size(); i++) {
             System.out.println(auxiliar.get(i));
@@ -39,6 +40,7 @@ public class ListaConexoes extends JFrame {
         for (int i = 0; i < dados.length; i++) {
             System.out.println("Dados : " + dados[i][0]);
         }
+
         Iniciar();
     }
 
@@ -63,6 +65,21 @@ public class ListaConexoes extends JFrame {
         JScrollPane scrollPane = new JScrollPane(tabela);
         add(scrollPane);
         setVisible(true);
+        tabela.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                if (listSelectionEvent.getValueIsAdjusting())
+                    return;
+                int selected = listSelectionEvent.getFirstIndex();
+                System.out.println("selected: " + selected);
+                for (int i = 0; i < auxiliar.size(); i++) {
+                    if( i == selected){
+                        System.out.println("Auxiliar : " +  auxiliar.get(i));
+                        new Escritorio(auxiliar.get(i));
+                    }
+                }
+            }
+        });
 
     }
 
