@@ -16,7 +16,7 @@ public class Colaborador extends JFrame implements ActionListener {
     public JTextField jTextField;
 
     //referente ao id
-    private JLabel idColaborador;
+    //private JLabel idColaborador;
     private JTextField JTextFieldColaborador;
 
     public String getColaborador() {
@@ -37,7 +37,7 @@ public class Colaborador extends JFrame implements ActionListener {
         jTextField = new JTextField();
         nomeColaborador = new JLabel("Nome do Colaborador");
         okColaborador = new JButton("OK");
-        idColaborador = new JLabel("Id do Colaborador");
+        //idColaborador = new JLabel("Id do Colaborador");
         JTextFieldColaborador = new JTextField();
         inicializar_componentes();
 
@@ -48,20 +48,20 @@ public class Colaborador extends JFrame implements ActionListener {
         jFrameColaborador.add(okColaborador);
         jFrameColaborador.add(jTextField);
         jFrameColaborador.add(nomeColaborador);
-        jFrameColaborador.add(JTextFieldColaborador);
-        jFrameColaborador.add(idColaborador);
+        //jFrameColaborador.add(JTextFieldColaborador);
+        //jFrameColaborador.add(idColaborador);
 
         jTextField.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
-        JTextFieldColaborador.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
+        //JTextFieldColaborador.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
         nomeColaborador.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
-        idColaborador.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
+        //idColaborador.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
 
         okColaborador.setBounds(100, 190, 100, 30);
         nomeColaborador.setBounds(70, 20, 190, 30);
-        idColaborador.setBounds(70, 100, 190, 30);
+        //idColaborador.setBounds(70, 100, 190, 30);
 
         jTextField.setBounds(80, 50, 170, 40);
-        JTextFieldColaborador.setBounds(80, 130, 170, 40);
+        //JTextFieldColaborador.setBounds(80, 130, 170, 40);
         okColaborador.addActionListener(this);
 
         jFrameColaborador.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);

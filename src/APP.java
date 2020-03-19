@@ -20,11 +20,11 @@ public class APP extends JLabel implements ActionListener {
     private boolean clicked = false;
     public JTextField campodata;
     private JMenuBar mnBarra;
-    public JMenu mnParticipar, mnChat;
+    public JMenu mnParticipar;
     private Image iconeTitulo;
     private ImageIcon background = new ImageIcon(getClass().getResource("programming-flag.png"));
     private JLabel fundo, auxiliar, labelIPhhost;
-    private JMenuItem miAutores, miColaborar, miEntrarNoChat;
+    private JMenuItem miColaborar;
     private JFrame jFramePrincipal;
     //private JButton botaoListarTodosColaboradores;
     Random random = new Random();
@@ -44,13 +44,13 @@ public class APP extends JLabel implements ActionListener {
         campodata = new JTextField();
 
         mnParticipar = new JMenu("Participar");
-        mnChat = new JMenu("Chat");
-        miEntrarNoChat = new JMenu("Acessar Chat");
+        //mnChat = new JMenu("Chat");
+        //miEntrarNoChat = new JMenu("Acessar Chat");
         //feito = new JButton("Feito");
         //mnExportar  = new JMenu("Exportar Classe java");
         //botaoIniciar = new JButton("Iniciar");
         //botaoListarTodosColaboradores = new JButton("Listar Colaboradores");
-        miAutores = new JMenuItem("Info autores");
+        //miAutores = new JMenuItem("Info autores");
 
         mensagemPorta = new JLabel("Porta de acesso");
         mensagemIP = new JLabel("IP da máquina");
@@ -72,13 +72,13 @@ public class APP extends JLabel implements ActionListener {
         // botaoIniciar.addActionListener(this);
         //botaoListarTodosColaboradores.addActionListener(this);
         mnBarra.add(mnParticipar);
-        mnBarra.add(mnChat);
+        //mnBarra.add(mnChat);
         mnParticipar.add(miColaborar);
         //mnParticipar.setEnabled(false);
-        mnChat.add(miEntrarNoChat);
+        //mnChat.add(miEntrarNoChat);
 
-        miEntrarNoChat.addActionListener(this);
-        miAutores.addActionListener(this);
+        //miEntrarNoChat.addActionListener(this);
+        //miAutores.addActionListener(this);
         miColaborar.addActionListener(this);
         // feito.addActionListener(this);
         jFramePrincipal.setJMenuBar(mnBarra);
@@ -141,9 +141,7 @@ public class APP extends JLabel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource().equals(miAutores)) {
-            JOptionPane.showMessageDialog(null, "Ainda não implementado");
-        } else if (e.getSource().equals(miColaborar)) {
+        if (e.getSource().equals(miColaborar)) {
             new Colaborador().jFrameColaborador.show();
         }
     }

@@ -113,12 +113,13 @@ public class Escritorio extends WindowAdapter implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(enviar_codigo)) {
             textoCodigo = jTextArea1.getText();
+            System.out.println("Textinho: " + textoCodigo);
             ClienteTCP1 clienteTCP1 = new ClienteTCP1(this.nome, textoCodigo, "10");
             clienteTCP1.start();
         } else if (e.getSource().equals(atualizarArea)) {
             clienteTCP2 = new ClienteTCP1(jTextArea1, this.nome, "11");
             clienteTCP2.start();
-            System.out.println("Clicou em enviar");
+            //System.out.println("Clicou em enviar");
         } else if (e.getSource().equals(ListarTodosColaboradores)) {
             clienteTCP3 = new ClienteTCP1("12");
             clienteTCP3.start();

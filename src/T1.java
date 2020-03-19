@@ -28,8 +28,12 @@ public class T1 extends Thread {
                 //System.out.println("entrou no 10");
                 String nome = inFromCliente.readLine();
                 System.out.println(nome);
-                String texto = inFromCliente.readLine();
-                System.out.println(texto);
+                String texto;
+                texto = inFromCliente.readLine();
+
+                texto = texto.replaceAll(" ", ";");
+                System.out.println("Texto no servidor: depois do replace " + texto);
+
                 ServidorTCP1.listaColaboradores.put(nome, texto);
             } else if (codigo.equalsIgnoreCase("11")) {
                 String nome = inFromCliente.readLine();
@@ -52,6 +56,7 @@ public class T1 extends Thread {
                     if (s != ServidorTCP1.listaColaboradores.get(nome)) {
                         s = ServidorTCP1.listaColaboradores.get(nome);
                         DataOutputStream outToClient = new DataOutputStream(socket.getOutputStream());
+                        System.out.println("From server no codigo 11: " + s);
                         outToClient.writeBytes(s + '\n');
                     }
 
@@ -63,7 +68,7 @@ public class T1 extends Thread {
                     listaNomes += pesquisar.getKey() + ";";
                 }
                 DataOutputStream outToClient = new DataOutputStream(socket.getOutputStream());
-                System.out.println("Lista nomes no servidor: " + listaNomes);
+                //System.out.println("Lista nomes no servidor: " + listaNomes);
                 outToClient.writeBytes(listaNomes + '\n');
             }
 
