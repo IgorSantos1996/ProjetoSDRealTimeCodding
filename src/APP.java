@@ -26,9 +26,7 @@ public class APP extends JLabel implements ActionListener {
     private JLabel fundo, auxiliar, labelIPhhost;
     private JMenuItem miColaborar;
     private JFrame jFramePrincipal;
-    //private JButton botaoListarTodosColaboradores;
     Random random = new Random();
-    //public Integer numberAcesso = random.nextInt(10000);
     private Timer timer;
     private int delay = 2000;
     BlinkLabel bl, blIP;
@@ -38,20 +36,8 @@ public class APP extends JLabel implements ActionListener {
     public APP() {
         jFramePrincipal = new JFrame("Real time codding");
         mnBarra = new JMenuBar();
-        //miSair = new JMenu("Sair");
-        //contribuintes = new JLabel("Quantidade de participantes");
-        //numeroContribuintes = new JTextField();
         campodata = new JTextField();
-
         mnParticipar = new JMenu("Participar");
-        //mnChat = new JMenu("Chat");
-        //miEntrarNoChat = new JMenu("Acessar Chat");
-        //feito = new JButton("Feito");
-        //mnExportar  = new JMenu("Exportar Classe java");
-        //botaoIniciar = new JButton("Iniciar");
-        //botaoListarTodosColaboradores = new JButton("Listar Colaboradores");
-        //miAutores = new JMenuItem("Info autores");
-
         mensagemPorta = new JLabel("Porta de acesso");
         mensagemIP = new JLabel("IP da máquina");
         miColaborar = new JMenuItem("Colaborar");
@@ -68,63 +54,35 @@ public class APP extends JLabel implements ActionListener {
         fundo.setLayout(null);
         auxiliar = new JLabel(background);
         jFramePrincipal.setContentPane(auxiliar);
-
-        // botaoIniciar.addActionListener(this);
-        //botaoListarTodosColaboradores.addActionListener(this);
         mnBarra.add(mnParticipar);
-        //mnBarra.add(mnChat);
         mnParticipar.add(miColaborar);
-        //mnParticipar.setEnabled(false);
-        //mnChat.add(miEntrarNoChat);
-
-        //miEntrarNoChat.addActionListener(this);
-        //miAutores.addActionListener(this);
         miColaborar.addActionListener(this);
-        // feito.addActionListener(this);
         jFramePrincipal.setJMenuBar(mnBarra);
-        //jFramePrincipal.add(numeroContribuintes);
-        //jFramePrincipal.add(contribuintes);
-        //jFramePrincipal.add(feito);
         jFramePrincipal.add(mensagemPorta);
         jFramePrincipal.add(mensagemIP);
-
-        /*Gerando numero de acesso*/
-
         bl = new BlinkLabel("6000");
         blIP = new BlinkLabel(getIP());
         jFramePrincipal.add(bl);
         jFramePrincipal.add(blIP);
-        //jFramePrincipal.add(botaoListarTodosColaboradores);
-        // jFramePrincipal.add(botaoIniciar);
         URL path = this.getClass().getResource("programming-flag.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(path);
-
         jFramePrincipal.setIconImage(iconeTitulo);
-
-        //botaoIniciar.setBounds(380, 520, 100, 30);
-        //botaoListarTodosColaboradores.setBounds(380, 520, 150, 30);
-
         jFramePrincipal.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jFramePrincipal.getContentPane().setLayout(null);
-        jFramePrincipal.setPreferredSize(new java.awt.Dimension(900, 650));
+        jFramePrincipal.setPreferredSize(new Dimension(900, 650));
         jFramePrincipal.pack();
         jFramePrincipal.setLocationRelativeTo(null);
         jFramePrincipal.setResizable(false);
         //HORA E DATA
         Date data = new Date();
         DateFormat sdf = DateFormat.getDateInstance(DateFormat.DEFAULT);
-
         campodata.setText(sdf.format(data));
         campodata.setBounds(730, 10, 150, 50);
         campodata.setBorder(new LineBorder(Color.WHITE, 0, false));
         campodata.setFont(new Font("arial", Font.BOLD, 16));
         jFramePrincipal.add(campodata);
         campodata.setEnabled(false);
-        //mnChat.setEnabled(false);
 
-        //contribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
-        //numeroContribuintes.setFont(new Font("arial", Font.CENTER_BASELINE, 14));
-        //jFramePrincipal.getRootPane().setDefaultButton(botaoListarTodosColaboradores);
         bl.setBounds(150, 5, 70, 40);
         bl.setFont(new Font("arial", Font.ITALIC, 14));
         bl.setBorder(new LineBorder(Color.BLUE, 2, true));

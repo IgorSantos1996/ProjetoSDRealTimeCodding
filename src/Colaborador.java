@@ -66,7 +66,7 @@ public class Colaborador extends JFrame implements ActionListener {
 
         jFrameColaborador.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         jFrameColaborador.getContentPane().setLayout(null);
-        jFrameColaborador.setPreferredSize(new java.awt.Dimension(300, 300));
+        jFrameColaborador.setPreferredSize(new Dimension(300, 300));
         jFrameColaborador.pack();
         jFrameColaborador.setLocationRelativeTo(null);
         jFrameColaborador.setResizable(false);

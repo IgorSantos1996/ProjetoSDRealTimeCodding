@@ -21,13 +21,13 @@ public class ListaConexoes extends JFrame {
         String registro;
         String concatena = "";
         int pos = 0;
-        registro = lista.get(0);//igor;clovis;
+        registro = lista.get(0);
         for (int i = 0; i < registro.length(); i++) {
             if (registro.charAt(i) != ';') {
                 concatena += registro.charAt(i);
             } else {
                 auxiliar.add(pos, concatena);
-                //System.out.println(concatena);
+
                 pos += 1;
                 concatena = "";
             }
@@ -74,7 +74,6 @@ public class ListaConexoes extends JFrame {
                     int linha = tabela.getSelectedRow();
                     for (int i = 0; i < auxiliar.size(); i++) {
                         if (i == linha) {
-                            System.out.println("Auxiliar : " + auxiliar.get(i));
                             new Escritorio(auxiliar.get(i)).jFrame.show();
                         }
                     }

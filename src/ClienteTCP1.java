@@ -26,7 +26,8 @@ public class ClienteTCP1 extends Thread {
 
     public ClienteTCP1(String nome, String textoCodigo, String Codigo) {
         this.nome = nome;
-        this.textoCodigo = textoCodigo.replaceAll("\n", " ");
+        this.textoCodigo = textoCodigo;
+//        this.textoCodigo = textoCodigo.replaceAll("\n", " ");
         this.Codigo = Codigo;
     }
 
@@ -83,7 +84,6 @@ public class ClienteTCP1 extends Thread {
             }
 
         } else if (Codigo.equalsIgnoreCase("11")) {
-            //j.setText("bsdnfdsnfdsnfdsn");
             try {
                 clienteSocket = new Socket("192.168.31.154", 6000);
                 DataOutputStream outToServer =
@@ -91,15 +91,16 @@ public class ClienteTCP1 extends Thread {
                 outToServer.writeBytes(Codigo + '\n');
                 outToServer.writeBytes(nome + '\n');
                 BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clienteSocket.getInputStream()));
-                //System.out.println("Cheguei aqui 1");
                 while (conexao) {
-                    // System.out.println("Cheguei aqui 2");
-                    String sentence = inFromServer.readLine();
-                    System.out.println("From Cliente no Codigo 11: " + sentence);
-                    // System.out.println("Cheguei aqui 3");
-                    j.setText(sentence.replaceAll(";", "\n"));
-                    //new T1().stop();
-
+                    String sentence = "";
+                    String s2;
+                    while ((s2 = inFromServer.readLine()).equalsIgnoreCase("#fim#") == false) {
+                        sentence = sentence + s2 + '\n';
+                    }
+                    sentence = sentence.substring(0, sentence.length() - 1);
+                    j.setText(sentence);
+                    JOptionPane.showMessageDialog(null,
+                            "Código Atualizado!", "Mensagem do Servidor", JOptionPane.WARNING_MESSAGE);
                 }
 
             } catch (Exception e) {
@@ -112,26 +113,20 @@ public class ClienteTCP1 extends Thread {
                         new DataOutputStream(clienteSocket.getOutputStream());
                 outToServer.writeBytes(Codigo + '\n');
                 BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clienteSocket.getInputStream()));
-                //System.out.println("Entrei aqui no codigo 12");
 
                 while (conexao) {
-                    //System.out.println("Entrei aqui no codigo 12 dentro do while");
                     String sentence12 = inFromServer.readLine();
                     if (!lista.contains(sentence12)) {
                         lista.add(sentence12);
                         ListaConexoes listaConexoes = new ListaConexoes(lista);
                         listaConexoes.show();
                     }
-                    //System.out.println("Sentence 12: " + sentence12);
                     return;
                 }
-
 
             } catch (Exception e) {
 
             }
         }
     }
-
-
 }
