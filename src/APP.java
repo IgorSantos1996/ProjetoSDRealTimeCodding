@@ -3,10 +3,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.net.InetAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.net.URL;
 import java.text.DateFormat;
 import java.util.Date;
@@ -18,11 +15,11 @@ public class APP extends JLabel implements ActionListener {
 
     private JLabel mensagemPorta, mensagemIP;
     private boolean clicked = false;
-    public JTextField campodata;
+    //public JTextField campodata;
     private JMenuBar mnBarra;
     public JMenu mnParticipar;
     private Image iconeTitulo;
-    private ImageIcon background = new ImageIcon(getClass().getResource("programming-flag.png"));
+    private ImageIcon background = new ImageIcon(getClass().getResource("atualizada.jpeg"));
     private JLabel fundo, auxiliar, labelIPhhost;
     private JMenuItem miColaborar;
     private JFrame jFramePrincipal;
@@ -36,7 +33,7 @@ public class APP extends JLabel implements ActionListener {
     public APP() {
         jFramePrincipal = new JFrame("Real time codding");
         mnBarra = new JMenuBar();
-        campodata = new JTextField();
+        //campodata = new JTextField();
         mnParticipar = new JMenu("Participar");
         mensagemPorta = new JLabel("Porta de acesso");
         mensagemIP = new JLabel("IP da máquina");
@@ -76,22 +73,22 @@ public class APP extends JLabel implements ActionListener {
         //HORA E DATA
         Date data = new Date();
         DateFormat sdf = DateFormat.getDateInstance(DateFormat.DEFAULT);
-        campodata.setText(sdf.format(data));
-        campodata.setBounds(730, 10, 150, 50);
-        campodata.setBorder(new LineBorder(Color.WHITE, 0, false));
-        campodata.setFont(new Font("arial", Font.BOLD, 16));
-        jFramePrincipal.add(campodata);
-        campodata.setEnabled(false);
+        //campodata.setText(sdf.format(data));
+        //campodata.setBounds(730, 140, 150, 50);
+        //campodata.setBorder(new LineBorder(Color.WHITE, 0, false));
+        // campodata.setFont(new Font("arial", Font.BOLD, 16));
+        // jFramePrincipal.add(campodata);
+        //campodata.setEnabled(false);
 
-        bl.setBounds(150, 5, 70, 40);
+        bl.setBounds(150, 120, 70, 40);
         bl.setFont(new Font("arial", Font.ITALIC, 14));
         bl.setBorder(new LineBorder(Color.BLUE, 2, true));
-        blIP.setBounds(150, 50, 120, 40);
+        blIP.setBounds(150, 170, 120, 40);
         blIP.setFont(new Font("arial", Font.ITALIC, 14));
         blIP.setBorder(new LineBorder(Color.BLUE, 2, true));
-        mensagemPorta.setBounds(20, 3, 140, 50);
+        mensagemPorta.setBounds(20, 117, 140, 50);
         mensagemPorta.setFont(new Font("arial", Font.ITALIC, 14));
-        mensagemIP.setBounds(20, 50, 140, 50);
+        mensagemIP.setBounds(20, 160, 140, 50);
         mensagemIP.setFont(new Font("arial", Font.ITALIC, 14));
 
     }
